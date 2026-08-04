@@ -18,7 +18,7 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const category = await getCategoryBySlug(slug);
-  if (!category) return { title: "分类未找到" };
+  if (!category) notFound();
   const title = `${category.icon} ${category.name} — AI项目`;
   const description = category.description || `${category.name}相关的AI创造项目`;
   const url = `${APP_URL}/categories/${slug}`;

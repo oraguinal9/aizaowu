@@ -18,7 +18,7 @@ interface Props { params: Promise<{ slug: string }> }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = await getProjectBySlug(slug);
-  if (!project) return { title: "项目未找到" };
+  if (!project) notFound();
   const projectUrl = `${APP_URL}/projects/${project.slug}`;
   const ogImage = project.thumbnail_url || `${APP_URL}/opengraph-image`;
   return {
