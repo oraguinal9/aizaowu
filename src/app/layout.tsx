@@ -3,6 +3,9 @@ import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import AiLearnBanner from "@/components/layout/AiLearnBanner";
+import { ThemeProvider } from "@/components/theme-provider";
+import { AuroraBackground } from "@/components/layout/aurora-background";
 import { APP_NAME, APP_TAGLINE, APP_DESCRIPTION, APP_URL } from "@/lib/constants";
 
 const OG_IMAGE = `${APP_URL}/opengraph-image`;
@@ -36,8 +39,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="zh-CN">
-      <body className="min-h-screen bg-gray-50 text-gray-900 antialiased dark:bg-gray-950 dark:text-gray-100">
+    <html lang="zh-CN" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="antialiased">
         {/* 全站结构化数据 */}
         <script type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify({
@@ -61,17 +72,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             description: APP_DESCRIPTION,
             logo: `${APP_URL}/opengraph-image`,
           })}} />
-        <div className="flex min-h-screen flex-col">
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
-        {/* 百度自动推送 */}
-        <Script id="baidu-push" strategy="afterInteractive">
-          {`(function(){var bp=document.createElement('script');var curProtocol=window.location.protocol.split(':')[0];if(curProtocol==='https'){bp.src='https://zz.bdstatic.com/linksubmit/push.js'}else{bp.src='http://push.zhanzhang.baidu.com/push.js'}var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(bp,s)})();`}
-        </Script>
-        {/* 百度统计 */}
-        <Script id="baidu-tongji" strategy="afterInteractive">{`var _hmt=_hmt||[];(function(){var hm=document.createElement('script');hm.src='https://hm.baidu.com/hm.js?b1e8f3f0b8f169210a59fafa8fdc6ca2';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(hm,s)})();`}</Script>
+        <ThemeProvider>
+          <AuroraBackground />
+          <div className="flex min-h-screen flex-col">
+            <AiLearnBanner />
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+          {/* 百度自动推送 */}
+          <Script id="baidu-push" strategy="afterInteractive">
+            {`(function(){var bp=document.createElement('script');var curProtocol=window.location.protocol.split(':')[0];if(curProtocol==='https'){bp.src='https://zz.bdstatic.com/linksubmit/push.js'}else{bp.src='http://push.zhanzhang.baidu.com/push.js'}var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(bp,s)})();`}
+          </Script>
+          {/* 百度统计 */}
+          <Script id="baidu-tongji" strategy="afterInteractive">{`var _hmt=_hmt||[];(function(){var hm=document.createElement('script');hm.src='https://hm.baidu.com/hm.js?b1e8f3f0b8f169210a59fafa8fdc6ca2';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(hm,s)})();`}</Script>
+        </ThemeProvider>
       </body>
     </html>
   );
