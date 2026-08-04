@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { supabase } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
+import { Code2, Mail, Loader2 } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -40,18 +41,18 @@ export default function LoginPage() {
 
   return (
     <div className="mx-auto max-w-md px-4 py-16">
-      <div className="rounded-2xl border border-gray-200 bg-white p-8 dark:border-gray-700 dark:bg-gray-800">
-        <h1 className="mb-2 text-center text-2xl font-bold text-gray-900 dark:text-white">登录 AI造物</h1>
-        <p className="mb-6 text-center text-sm text-gray-500 dark:text-gray-400">
+      <div className="rounded-2xl border border-border bg-surface p-8">
+        <h1 className="mb-2 text-center font-display text-2xl font-bold tracking-tight text-foreground">登录 AI 造物</h1>
+        <p className="mb-6 text-center text-sm text-muted">
           登录后可以提交项目和投票
         </p>
 
         {message && (
           <div
-            className={`mb-4 rounded-lg p-3 text-sm ${
+            className={`mb-4 rounded-lg border p-3 text-sm ${
               message.type === "success"
-                ? "bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-400"
-                : "bg-red-50 text-red-700 dark:bg-red-900/30 dark:text-red-400"
+                ? "border-green-500/30 bg-green-500/10 text-green-600 dark:text-green-400"
+                : "border-red-500/30 bg-red-500/10 text-red-600 dark:text-red-400"
             }`}
           >
             {message.text}
@@ -62,15 +63,16 @@ export default function LoginPage() {
         <button
           onClick={handleGitHubLogin}
           disabled={loading}
-          className="mb-3 w-full rounded-xl border border-gray-300 bg-white px-4 py-3 font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 transition-colors disabled:opacity-50"
+          className="mb-3 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-border bg-bg px-4 py-3 font-medium text-foreground transition hover:border-border-strong disabled:opacity-50"
         >
-          🐙 使用 GitHub 登录
+          <Code2 size={16} />
+          使用 GitHub 登录
         </button>
 
         <div className="mb-3 flex items-center gap-3">
-          <div className="flex-1 border-t border-gray-200 dark:border-gray-700" />
-          <span className="text-xs text-gray-400">或</span>
-          <div className="flex-1 border-t border-gray-200 dark:border-gray-700" />
+          <div className="flex-1 border-t border-border" />
+          <span className="text-xs text-muted">或</span>
+          <div className="flex-1 border-t border-border" />
         </div>
 
         {/* Email Magic Link */}
@@ -81,14 +83,15 @@ export default function LoginPage() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="your@email.com"
             required
-            className="mb-3 w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500"
+            className="mb-3 w-full rounded-lg border border-border bg-bg px-4 py-3 text-foreground placeholder:text-muted focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/15 transition-colors"
           />
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-xl bg-blue-600 px-4 py-3 font-medium text-white hover:bg-blue-700 transition-colors disabled:opacity-50"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand px-4 py-3 font-medium text-white transition hover:brightness-110 disabled:opacity-50"
           >
-            {loading ? "发送中..." : "📧 发送魔法链接"}
+            {loading ? <Loader2 size={16} className="animate-spin" /> : <Mail size={16} />}
+            {loading ? "发送中..." : "发送魔法链接"}
           </button>
         </form>
       </div>
