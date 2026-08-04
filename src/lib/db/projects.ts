@@ -3,8 +3,6 @@ import type { Project } from "@/types";
 import { PROJECTS_PER_PAGE } from "@/lib/constants";
 import { MOCK_PROJECTS } from "./mock";
 
-let useMock = false;
-
 /** 清理搜索关键词：转义 ilike 通配符 */
 function sanitizeQuery(q: string): string {
   return q.replace(/[%_]/g, "").trim().slice(0, 100);
@@ -15,21 +13,15 @@ function mockSlice(data: Project[], page: number, limit: number) {
   return { projects: data.slice(from, from + limit), total: data.length };
 }
 
-// 自动降级：Supabase 失败 → 切到 mock
+// 安全降级：Supabase 成功（含空结果）直接返回；仅在查询报错时回退 mock。
+// 不再使用模块级全局开关——避免一次空结果/报错污染后续所有读取（会导致真实项目详情页 404）。
 async function trySupabase<T>(fn: () => Promise<T | null>, mockFallback: T): Promise<T> {
-  if (useMock) return mockFallback;
   try {
     const result = await fn();
-    if (result !== null && result !== undefined) {
-      // 检查空数组
-      if (Array.isArray(result) && result.length === 0) {
-        // 可能是新数据库，不算成功
-      } else {
-        return result;
-      }
-    }
-  } catch {}
-  useMock = true;
+    if (result !== null && result !== undefined) return result;
+  } catch (err) {
+    console.error("[db] Supabase 查询失败，回退 mock 数据:", err);
+  }
   return mockFallback;
 }
 
