@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { ArrowRight, Sparkles, TrendingUp, Clock, Plus } from "lucide-react";
 import { getPublishedProjects, getFeaturedProjects, getWeeklyTopProjects } from "@/lib/db/projects";
 import { getCategories } from "@/lib/db/categories";
+import { ProjectLogo } from "@/components/ui/project-logo";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -27,13 +29,17 @@ export default async function DiscoverPage() {
   const freshProjects = allProjects.filter(p => !featured.find(f => f.id === p.id)).slice(0, 12);
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-6">
+    <div className="mx-auto max-w-6xl px-4 py-10">
       {/* SEO Hero */}
-      <section className="mb-8">
-        <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
-          🚀 发现 AI 创造的项目
+      <section className="mb-10">
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
+          <Sparkles size={12} className="text-brand" />
+          DISCOVER
+        </span>
+        <h1 className="mt-4 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+          发现 AI 创造的项目
         </h1>
-        <p className="mt-3 max-w-2xl text-lg text-gray-500 dark:text-gray-400">
+        <p className="mt-3 max-w-2xl text-lg text-muted">
           每周精选素人开发者用AI做的工具、应用、游戏、网站。不用会编程，AI让每个人都能创造。
         </p>
         {/* 结构化数据 */}
@@ -49,30 +55,38 @@ export default async function DiscoverPage() {
         />
       </section>
 
-      {/* 本周精选 — 富文本介绍 */}
+      {/* 本周精选 */}
       <section className="mb-10">
-        <h2 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">📅 本周精选 AI 项目</h2>
-        <p className="mb-4 text-sm text-gray-500 dark:text-gray-400">
+        <div className="mb-4 flex items-center gap-2">
+          <TrendingUp size={18} className="text-brand" />
+          <h2 className="font-display text-xl font-semibold tracking-tight text-foreground">本周精选 AI 项目</h2>
+        </div>
+        <p className="mb-4 text-sm text-muted">
           以下是本周最受社区欢迎的 10 个 AI 项目。排名综合了浏览量、投票数和评论数，每周日自动更新。
         </p>
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-3 sm:grid-cols-2">
           {topProjects.slice(0, 10).map((project, index) => (
             <Link
               key={project.id}
               href={`/projects/${project.slug}`}
-              className="group flex gap-4 rounded-xl border border-gray-200 bg-white p-4 transition-all hover:border-blue-300 hover:shadow-md dark:border-gray-700 dark:bg-gray-800 dark:hover:border-blue-600"
+              className="group flex items-center gap-4 rounded-xl border border-border bg-surface p-4 transition-colors hover:border-border-strong hover:bg-surface-2/50"
             >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-50 text-lg font-bold text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
-                {index + 1}
-              </div>
-              <div className="min-w-0">
-                <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
+              <span
+                className={`font-mono text-lg font-bold ${
+                  index < 3 ? "text-brand" : "text-muted"
+                }`}
+              >
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <ProjectLogo slug={project.slug} name={project.name} thumbnailUrl={project.thumbnail_url} size="md" />
+              <div className="min-w-0 flex-1">
+                <h3 className="truncate font-semibold text-foreground transition-colors group-hover:text-brand">
                   {project.name}
                 </h3>
-                <p className="mt-1 line-clamp-2 text-sm text-gray-500 dark:text-gray-400">
+                <p className="mt-0.5 line-clamp-2 text-sm text-muted">
                   {project.tagline}
                 </p>
-                <div className="mt-2 flex items-center gap-3 text-xs text-gray-400">
+                <div className="mt-1.5 flex items-center gap-3 text-xs text-muted">
                   {project.category && <span>{project.category.icon} {project.category.name}</span>}
                   <span>👍 {project.vote_count}</span>
                 </div>
@@ -84,10 +98,12 @@ export default async function DiscoverPage() {
 
       {/* 精选推荐 + 最新上架 两栏 */}
       <div className="grid gap-8 lg:grid-cols-2">
-        {/* 精选推荐 */}
         <section>
-          <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">⭐ 编辑精选</h2>
-          <p className="mb-4 text-sm text-gray-500 dark:text-gray-400">
+          <div className="mb-3 flex items-center gap-2">
+            <Sparkles size={16} className="text-brand" />
+            <h2 className="font-display text-lg font-semibold tracking-tight text-foreground">编辑精选</h2>
+          </div>
+          <p className="mb-4 text-sm text-muted">
             质量和创意最出众的项目，由社区推荐产生。
           </p>
           <div className="space-y-3">
@@ -95,19 +111,24 @@ export default async function DiscoverPage() {
               <Link
                 key={project.id}
                 href={`/projects/${project.slug}`}
-                className="block rounded-lg border border-gray-200 bg-white p-3 transition-all hover:border-blue-300 dark:border-gray-700 dark:bg-gray-800"
+                className="group flex items-center gap-3 rounded-lg border border-border bg-surface p-3 transition-colors hover:border-border-strong hover:bg-surface-2/50"
               >
-                <h3 className="font-medium text-gray-900 dark:text-white">{project.name}</h3>
-                <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">{project.tagline}</p>
+                <ProjectLogo slug={project.slug} name={project.name} thumbnailUrl={project.thumbnail_url} size="sm" />
+                <div className="min-w-0 flex-1">
+                  <h3 className="truncate font-medium text-foreground transition-colors group-hover:text-brand">{project.name}</h3>
+                  <p className="mt-0.5 line-clamp-1 text-sm text-muted">{project.tagline}</p>
+                </div>
               </Link>
             ))}
           </div>
         </section>
 
-        {/* 最新上架 */}
         <section>
-          <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">🆕 最新上架</h2>
-          <p className="mb-4 text-sm text-gray-500 dark:text-gray-400">
+          <div className="mb-3 flex items-center gap-2">
+            <Clock size={16} className="text-brand" />
+            <h2 className="font-display text-lg font-semibold tracking-tight text-foreground">最新上架</h2>
+          </div>
+          <p className="mb-4 text-sm text-muted">
             最近加入 AI造物 的项目，看看有什么新鲜玩意。
           </p>
           <div className="space-y-3">
@@ -115,10 +136,13 @@ export default async function DiscoverPage() {
               <Link
                 key={project.id}
                 href={`/projects/${project.slug}`}
-                className="block rounded-lg border border-gray-200 bg-white p-3 transition-all hover:border-blue-300 dark:border-gray-700 dark:bg-gray-800"
+                className="group flex items-center gap-3 rounded-lg border border-border bg-surface p-3 transition-colors hover:border-border-strong hover:bg-surface-2/50"
               >
-                <h3 className="font-medium text-gray-900 dark:text-white">{project.name}</h3>
-                <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">{project.tagline}</p>
+                <ProjectLogo slug={project.slug} name={project.name} thumbnailUrl={project.thumbnail_url} size="sm" />
+                <div className="min-w-0 flex-1">
+                  <h3 className="truncate font-medium text-foreground transition-colors group-hover:text-brand">{project.name}</h3>
+                  <p className="mt-0.5 line-clamp-1 text-sm text-muted">{project.tagline}</p>
+                </div>
               </Link>
             ))}
           </div>
@@ -126,19 +150,21 @@ export default async function DiscoverPage() {
       </div>
 
       {/* 分类导览 */}
-      <section className="mt-10">
-        <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">📂 按分类浏览</h2>
+      <section className="mt-12">
+        <h2 className="mb-4 font-display text-lg font-semibold tracking-tight text-foreground">按分类浏览</h2>
         <div className="grid gap-3 sm:grid-cols-3">
           {categories.map(cat => (
             <Link
               key={cat.id}
               href={`/categories/${cat.slug}`}
-              className="flex items-center gap-3 rounded-xl border border-gray-200 bg-white p-4 transition-all hover:border-blue-300 dark:border-gray-700 dark:bg-gray-800"
+              className="group flex items-center gap-3 rounded-xl border border-border bg-surface p-4 transition-colors hover:border-brand/50"
             >
-              <span className="text-2xl">{cat.icon}</span>
-              <div>
-                <h3 className="font-medium text-gray-900 dark:text-white">{cat.name}</h3>
-                <p className="text-xs text-gray-400">{cat.description}</p>
+              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-border bg-bg text-lg">
+                {cat.icon}
+              </span>
+              <div className="min-w-0">
+                <h3 className="font-medium text-foreground transition-colors group-hover:text-brand">{cat.name}</h3>
+                <p className="line-clamp-1 text-xs text-muted">{cat.description}</p>
               </div>
             </Link>
           ))}
@@ -146,11 +172,20 @@ export default async function DiscoverPage() {
       </section>
 
       {/* 底部 CTA */}
-      <section className="mt-10 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 p-8 text-center text-white">
-        <h2 className="text-2xl font-bold">🤖 用AI做了个东西？</h2>
-        <p className="mt-2 text-blue-100">不管是用AI做的网站、工具、游戏还是其他，都欢迎在这里展示。</p>
-        <Link href="/submit" className="mt-4 inline-block rounded-full bg-white px-6 py-2.5 font-medium text-blue-600 hover:bg-blue-50 transition-colors">
-          提交你的项目 →
+      <section className="mt-12 rounded-2xl border border-border bg-surface p-8 text-center">
+        <h2 className="font-display text-2xl font-bold tracking-tight text-foreground">
+          用 AI 做了个东西？
+        </h2>
+        <p className="mt-2 text-muted">
+          不管是用AI做的网站、工具、游戏还是其他，都欢迎在这里展示。
+        </p>
+        <Link
+          href="/submit"
+          className="mt-5 inline-flex items-center gap-2 rounded-lg bg-brand px-6 py-2.5 font-medium text-white transition hover:brightness-110"
+        >
+          <Plus size={16} />
+          提交你的项目
+          <ArrowRight size={15} />
         </Link>
       </section>
     </div>

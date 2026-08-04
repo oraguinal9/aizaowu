@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ChevronRight } from "lucide-react";
 import { getCategoryBySlug, getCategories } from "@/lib/db/categories";
 import { getProjectsByCategory } from "@/lib/db/projects";
 import { ProjectCard } from "@/components/ui/project-card";
@@ -55,20 +56,20 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   return (
     <>
       <CategoryJsonLd name={category.name} slug={category.slug} />
-      <div className="mx-auto max-w-6xl px-4 py-6">
+      <div className="mx-auto max-w-6xl px-4 py-10">
       {/* 面包屑 */}
-      <nav className="mb-4 text-sm text-gray-500 dark:text-gray-400">
-        <Link href="/" className="hover:text-blue-600">首页</Link>
-        <span className="mx-2">/</span>
-        <span className="text-gray-900 dark:text-white">{category.icon} {category.name}</span>
+      <nav className="mb-6 flex items-center gap-1 text-sm text-muted">
+        <Link href="/" className="transition-colors hover:text-brand">首页</Link>
+        <ChevronRight size={14} className="opacity-50" />
+        <span className="text-foreground">{category.icon} {category.name}</span>
       </nav>
 
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+        <h1 className="font-display text-3xl font-bold tracking-tight text-foreground">
           {category.icon} {category.name}
         </h1>
         {category.description && (
-          <p className="mt-2 text-gray-500 dark:text-gray-400">{category.description}</p>
+          <p className="mt-2 text-muted">{category.description}</p>
         )}
       </div>
 
@@ -79,26 +80,26 @@ export default async function CategoryPage({ params, searchParams }: Props) {
             <Link
               key={cat.id}
               href={`/categories/${cat.slug}`}
-              className={`rounded-full px-3 py-1 text-sm ${
+              className={`rounded-full px-3 py-1 text-sm transition-colors ${
                 cat.slug === slug
-                  ? "bg-blue-600 text-white"
-                  : "border border-gray-200 bg-white text-gray-600 hover:border-blue-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400"
+                  ? "bg-brand text-white"
+                  : "border border-border bg-surface text-foreground hover:border-brand/50 hover:text-brand"
               }`}
             >
               {cat.icon} {cat.name}
             </Link>
           ))}
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-1 rounded-lg border border-border bg-surface p-1">
           <Link
             href={`/categories/${slug}?sort=newest`}
-            className={`rounded-lg px-3 py-1 text-sm ${sortBy === "newest" ? "bg-gray-900 text-white dark:bg-white dark:text-gray-900" : "bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400"}`}
+            className={`rounded-md px-3 py-1 text-sm transition-colors ${sortBy === "newest" ? "bg-brand text-white" : "text-muted hover:text-foreground"}`}
           >
             最新
           </Link>
           <Link
             href={`/categories/${slug}?sort=popular`}
-            className={`rounded-lg px-3 py-1 text-sm ${sortBy === "popular" ? "bg-gray-900 text-white dark:bg-white dark:text-gray-900" : "bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400"}`}
+            className={`rounded-md px-3 py-1 text-sm transition-colors ${sortBy === "popular" ? "bg-brand text-white" : "text-muted hover:text-foreground"}`}
           >
             最热
           </Link>
@@ -107,9 +108,9 @@ export default async function CategoryPage({ params, searchParams }: Props) {
 
       {/* 项目列表 */}
       {projects.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-gray-300 p-12 text-center text-gray-400 dark:border-gray-600 dark:text-gray-500">
-          <p className="text-lg">该分类暂无项目</p>
-          <Link href="/submit" className="mt-2 inline-block text-blue-600 hover:underline">
+        <div className="rounded-xl border border-dashed border-border p-12 text-center">
+          <p className="text-lg text-foreground">该分类暂无项目</p>
+          <Link href="/submit" className="mt-2 inline-block text-brand hover:underline">
             成为第一个提交的人 →
           </Link>
         </div>
@@ -127,18 +128,18 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           {currentPage > 1 && (
             <Link
               href={`/categories/${slug}?sort=${sortBy}&page=${currentPage - 1}`}
-              className="rounded-lg border px-4 py-2 text-sm hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-800"
+              className="rounded-lg border border-border bg-surface px-4 py-2 text-sm text-foreground transition-colors hover:border-border-strong"
             >
               ← 上一页
             </Link>
           )}
-          <span className="px-4 py-2 text-sm text-gray-500">
+          <span className="px-4 py-2 text-sm text-muted">
             {currentPage} / {totalPages}
           </span>
           {currentPage < totalPages && (
             <Link
               href={`/categories/${slug}?sort=${sortBy}&page=${currentPage + 1}`}
-              className="rounded-lg border px-4 py-2 text-sm hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-800"
+              className="rounded-lg border border-border bg-surface px-4 py-2 text-sm text-foreground transition-colors hover:border-border-strong"
             >
               下一页 →
             </Link>
