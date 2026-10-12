@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
       screenshots: screenshots || [],
       thumbnail_url: thumbnail_url || null,
       submitter_id: user.id,
-      status: "published",
+      status: "hidden",
     });
 
     if (error) {

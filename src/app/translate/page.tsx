@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { supabase } from "@/lib/supabase/client";
+import { Languages, Loader2, Copy } from "lucide-react";
 
 const LANGS = [
   { key: "zh2en", label: "中 → 英", icon: "🇬🇧" },
@@ -36,18 +37,22 @@ export default function TranslatePage() {
   const copyResult = () => { navigator.clipboard.writeText(result); alert("已复制"); };
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8">
-      <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white mb-2">🌐 AI翻译</h1>
-      <p className="text-gray-500 dark:text-gray-400 mb-6">
-        每天免费5次，登录10次 {remaining !== null && <span className="text-blue-600">（剩余{remaining}次）</span>}
+    <div className="mx-auto max-w-3xl px-4 py-10">
+      <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
+        <Languages size={12} className="text-brand" />
+        AI TRANSLATOR
+      </span>
+      <h1 className="mt-4 font-display text-3xl font-bold tracking-tight text-foreground">AI 翻译</h1>
+      <p className="mt-2 text-muted">
+        每天免费 5 次，登录 10 次 {remaining !== null && <span className="text-brand">（剩余 {remaining} 次）</span>}
       </p>
 
-      {error && <div className="mb-4 rounded-lg bg-red-50 p-3 text-sm text-red-600 dark:bg-red-900/30">{error}</div>}
+      {error && <div className="mb-4 rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-600 dark:text-red-400">{error}</div>}
 
-      <div className="mb-4 flex flex-wrap gap-2">
+      <div className="mt-6 mb-4 flex flex-wrap gap-2">
         {LANGS.map((l) => (
           <button key={l.key} onClick={() => setLang(l.key)}
-            className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${lang === l.key ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-400"}`}>
+            className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${lang === l.key ? "bg-brand text-white" : "border border-border bg-surface text-foreground hover:border-brand/50"}`}>
             {l.icon} {l.label}
           </button>
         ))}
@@ -55,20 +60,24 @@ export default function TranslatePage() {
 
       <textarea value={text} onChange={(e) => setText(e.target.value)} rows={6}
         placeholder="输入要翻译的内容..."
-        className="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 focus:border-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white" />
+        className="w-full rounded-lg border border-border bg-surface px-4 py-3 text-foreground placeholder:text-muted focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/15 transition-colors" />
 
       <button onClick={handleSubmit} disabled={loading || !text.trim()}
-        className="mt-3 rounded-xl bg-blue-600 px-6 py-3 font-medium text-white hover:bg-blue-700 disabled:opacity-50 transition-colors">
+        className="mt-3 inline-flex items-center gap-2 rounded-lg bg-brand px-6 py-2.5 font-medium text-white transition hover:brightness-110 disabled:opacity-50">
+        {loading && <Loader2 size={16} className="animate-spin" />}
         {loading ? "翻译中..." : "开始翻译 →"}
       </button>
 
       {result && (
-        <div className="mt-6 rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+        <div className="mt-6 rounded-xl border border-border bg-surface p-6">
           <div className="mb-3 flex items-center justify-between">
-            <h3 className="text-sm font-medium text-gray-500">翻译结果</h3>
-            <button onClick={copyResult} className="rounded-lg bg-gray-100 px-3 py-1 text-xs text-gray-500 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-400">📋 复制</button>
+            <h3 className="text-sm font-medium text-muted">翻译结果</h3>
+            <button onClick={copyResult} className="inline-flex items-center gap-1 rounded-md border border-border bg-bg px-2.5 py-1 text-xs text-muted transition-colors hover:text-brand">
+              <Copy size={12} />
+              复制
+            </button>
           </div>
-          <p className="whitespace-pre-wrap text-gray-700 dark:text-gray-300 leading-relaxed">{result}</p>
+          <p className="whitespace-pre-wrap leading-relaxed text-foreground/85">{result}</p>
         </div>
       )}
     </div>

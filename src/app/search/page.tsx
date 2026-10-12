@@ -1,5 +1,6 @@
 import { searchProjects } from "@/lib/db/projects";
 import { ProjectCard } from "@/components/ui/project-card";
+import { Search as SearchIcon } from "lucide-react";
 import type { Metadata } from "next";
 import { APP_NAME, APP_URL } from "@/lib/constants";
 
@@ -36,22 +37,25 @@ export default async function SearchPage({ searchParams }: Props) {
     : { projects: [], total: 0 };
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-6">
-      <h1 className="mb-2 text-3xl font-bold text-gray-900 dark:text-white">🔍 搜索</h1>
+    <div className="mx-auto max-w-4xl px-4 py-10">
+      <h1 className="mb-6 font-display text-3xl font-bold tracking-tight text-foreground">搜索</h1>
 
       {/* 搜索框 */}
-      <form action="/search" method="GET" className="mb-6">
+      <form action="/search" method="GET" className="mb-8">
         <div className="flex gap-2">
-          <input
-            type="text"
-            name="q"
-            defaultValue={q}
-            placeholder="搜索项目名称、描述..."
-            className="flex-1 rounded-xl border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-500"
-          />
+          <div className="relative flex-1">
+            <SearchIcon size={16} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-muted" />
+            <input
+              type="text"
+              name="q"
+              defaultValue={q}
+              placeholder="搜索项目名称、描述..."
+              className="w-full rounded-lg border border-border bg-surface py-3 pl-10 pr-4 text-foreground placeholder:text-muted focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/15 transition-colors"
+            />
+          </div>
           <button
             type="submit"
-            className="rounded-xl bg-blue-600 px-6 py-3 font-medium text-white hover:bg-blue-700 transition-colors"
+            className="rounded-lg bg-brand px-6 py-3 font-medium text-white transition hover:brightness-110"
           >
             搜索
           </button>
@@ -61,13 +65,13 @@ export default async function SearchPage({ searchParams }: Props) {
       {/* 结果 */}
       {q && (
         <div>
-          <p className="mb-4 text-sm text-gray-500 dark:text-gray-400">
+          <p className="mb-4 text-sm text-muted">
             搜索 &quot;{q}&quot; — 找到 {total} 个结果
           </p>
           {projects.length === 0 ? (
-            <div className="rounded-xl border border-dashed border-gray-300 p-12 text-center text-gray-400 dark:border-gray-600 dark:text-gray-500">
-              <p className="text-lg">没有找到相关项目</p>
-              <p className="mt-1">试试其他关键词？</p>
+            <div className="rounded-xl border border-dashed border-border p-12 text-center">
+              <p className="text-lg text-foreground">没有找到相关项目</p>
+              <p className="mt-1 text-sm text-muted">试试其他关键词？</p>
             </div>
           ) : (
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

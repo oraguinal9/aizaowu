@@ -1,0 +1,23 @@
+# AI造物 (aizaow.com)
+> AI 项目展示和发现平台。素人开发者用 AI 创造的项目都在这里。
+
+## 网站结构
+- 首页: https://aizaow.com (精选/最新/热门项目)
+- 排行榜: https://aizaow.com/rankings (项目排名)
+- 搜索: https://aizaow.com/search (全文搜索)
+- 关于: https://aizaow.com/about
+- 提交: https://aizaow.com/submit
+
+## 项目分类
+- /categories/productivity 效率工具
+- /categories/creative 创意设计
+- /categories/games 游戏
+- /categories/education 教育
+- /categories/content 内容
+- /categories/lifestyle 生活
+- /categories/devtools 开发者工具
+- /categories/finance 金融
+- /categories/other 其他
+
+## API
+- Sitemap: https://aizaow.com/sitemap.xml

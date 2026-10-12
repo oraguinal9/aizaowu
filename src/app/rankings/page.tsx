@@ -1,80 +1,145 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { getRankedProjects } from "@/lib/db/projects";
-import type { Metadata } from "next";
-import { APP_NAME, APP_URL } from "@/lib/constants";
-import { RankingsJsonLd } from "@/components/ui/json-ld";
+import { Trophy, Loader2 } from "lucide-react";
+import type { Project } from "@/types";
+import { ProjectLogo } from "@/components/ui/project-logo";
 
-const OG_IMAGE = `${APP_URL}/opengraph-image`;
+export default function RankingsPage() {
+  const [tab, setTab] = useState<"community" | "all">("community");
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
 
-export const metadata: Metadata = {
-  title: "排行榜",
-  description: `AI造物项目排行榜 — 发现最受欢迎的AI创造项目`,
-  alternates: { canonical: `${APP_URL}/rankings` },
-  openGraph: {
-    title: `排行榜 | ${APP_NAME}`,
-    description: `AI造物项目排行榜 — 发现最受欢迎的AI创造项目`,
-    url: `${APP_URL}/rankings`,
-    siteName: APP_NAME,
-    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: "排行榜" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `排行榜 | ${APP_NAME}`,
-    description: `AI造物项目排行榜 — 发现最受欢迎的AI创造项目`,
-    images: [OG_IMAGE],
-  },
-};
+  useEffect(() => {
+    setLoading(true);
+    fetch("/api/projects?limit=50")
+      .then((r) => r.json())
+      .then((data) => {
+        const all = (data.projects || data.data || []).filter(
+          (p: Project) => p.status === "published"
+        );
+        setProjects(all);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
 
-export const revalidate = 900;
+  // 社区项目：slug 不以 "ext-" 开头（即用户提交的）
+  const communityProjects = projects
+    .filter((p) => !p.slug.startsWith("ext-"))
+    .sort((a, b) => b.vote_count - a.vote_count);
 
-export default async function RankingsPage() {
-  const allTime = await getRankedProjects("all");
-  const weekly = await getRankedProjects("weekly");
-  const monthly = await getRankedProjects("monthly");
+  // 全站：所有项目
+  const allProjects = [...projects].sort((a, b) => b.vote_count - a.vote_count);
+
+  const displayProjects = tab === "community" ? communityProjects : allProjects;
 
   return (
-    <>
-      <RankingsJsonLd />
-      <div className="mx-auto max-w-4xl px-4 py-6">
-        <h1 className="mb-6 text-3xl font-bold text-gray-900 dark:text-white">🏆 排行榜</h1>
+    <div className="mx-auto max-w-4xl px-4 py-10">
+      <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
+        <Trophy size={12} className="text-brand" />
+        RANKINGS
+      </span>
+      <h1 className="mt-4 font-display text-3xl font-bold tracking-tight text-foreground">排行榜</h1>
+      <p className="mt-2 text-muted">
+        {tab === "community"
+          ? "独立开发者提交的项目，按社区推荐排序"
+          : "全部收录项目，包含知名AI工具和社区作品"}
+      </p>
 
-      {/* 总榜 */}
-      <section className="mb-8">
-        <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">🥇 总榜 Top 50</h2>
-        <div className="rounded-xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 overflow-hidden">
-          {allTime.length === 0 ? (
-            <p className="p-8 text-center text-gray-400">暂无数据</p>
-          ) : (
-            <ol>
-              {allTime.map((project, i) => (
-                <li key={project.id} className="border-b border-gray-100 last:border-0 dark:border-gray-700">
+      {/* Tab 切换 */}
+      <div className="mt-6 mb-6 flex gap-1 rounded-lg border border-border bg-surface p-1 sm:w-fit">
+        <button
+          onClick={() => setTab("community")}
+          className={`rounded-md px-4 py-1.5 text-sm font-medium transition-colors ${
+            tab === "community"
+              ? "bg-brand text-white"
+              : "text-muted hover:text-foreground"
+          }`}
+        >
+          社区项目榜
+        </button>
+        <button
+          onClick={() => setTab("all")}
+          className={`rounded-md px-4 py-1.5 text-sm font-medium transition-colors ${
+            tab === "all"
+              ? "bg-brand text-white"
+              : "text-muted hover:text-foreground"
+          }`}
+        >
+          全站总榜
+        </button>
+      </div>
+
+      {/* 排行榜列表 */}
+      <div className="overflow-hidden rounded-xl border border-border bg-surface">
+        {loading ? (
+          <div className="flex flex-col items-center gap-3 p-12 text-center">
+            <Loader2 size={24} className="animate-spin text-brand" />
+            <p className="text-sm text-muted">加载中...</p>
+          </div>
+        ) : displayProjects.length === 0 ? (
+          <p className="p-12 text-center text-sm text-muted">暂无数据</p>
+        ) : (
+          <ol className="divide-y divide-border">
+            {displayProjects.map((project, i) => {
+              const isCommunity = !project.slug.startsWith("ext-");
+              const rank = i + 1;
+              return (
+                <li key={project.id}>
                   <Link
                     href={`/projects/${project.slug}`}
-                    className="flex items-center gap-4 p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                    className="flex items-center gap-4 p-4 transition-colors hover:bg-surface-2/60"
                   >
-                    <span className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold ${
-                      i < 3 ? "bg-amber-100 text-amber-700 text-lg" : "bg-gray-100 text-gray-500"
-                    }`}>
-                      {i + 1}
+                    {/* 序号 */}
+                    <span
+                      className={`w-8 shrink-0 text-center font-mono text-base font-bold ${
+                        rank === 1
+                          ? "text-brand"
+                          : rank === 2
+                          ? "text-brand-2"
+                          : rank === 3
+                          ? "text-accent"
+                          : "text-muted"
+                      }`}
+                    >
+                      {String(rank).padStart(2, "0")}
                     </span>
+
+                    <ProjectLogo slug={project.slug} name={project.name} thumbnailUrl={project.thumbnail_url} size="sm" />
+
                     <div className="min-w-0 flex-1">
-                      <p className="font-semibold text-gray-900 dark:text-white truncate">{project.name}</p>
-                      <p className="text-sm text-gray-400 truncate">{project.tagline}</p>
+                      <div className="flex items-center gap-2">
+                        <p className="truncate font-semibold text-foreground">
+                          {project.name}
+                        </p>
+                        {isCommunity && (
+                          <span className="shrink-0 rounded-md border border-border bg-surface-2 px-1.5 py-0.5 text-[11px] font-medium text-muted">
+                            社区
+                          </span>
+                        )}
+                      </div>
+                      <p className="truncate text-sm text-muted">{project.tagline}</p>
                     </div>
-                    <div className="text-right">
-                      <p className="text-lg font-bold text-gray-900 dark:text-white">👍 {project.vote_count}</p>
+
+                    <div className="shrink-0 text-right">
+                      <p className="text-base font-bold text-foreground">
+                        {project.vote_count}
+                      </p>
                       {project.category && (
-                        <span className="text-xs text-gray-400">{project.category.icon} {project.category.name}</span>
+                        <span className="text-xs text-muted">
+                          {project.category.icon} {project.category.name}
+                        </span>
                       )}
                     </div>
                   </Link>
                 </li>
-              ))}
-            </ol>
-          )}
-        </div>
-      </section>
+              );
+            })}
+          </ol>
+        )}
       </div>
-    </>
+    </div>
   );
 }

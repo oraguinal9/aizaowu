@@ -1,12 +1,160 @@
 @import "tailwindcss";
 
-@theme inline {
-  --color-primary: #2563eb;
-  --color-primary-dark: #1d4ed8;
-  --color-accent: #f59e0b;
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+/* 手动暗色策略：通过 <html class="dark"> 切换，next-themes 控制 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ============ 设计令牌（亮/暗两套，极简深色线性风） ============ */
+:root {
+  --bg: #ffffff;
+  --surface: #fafafa;
+  --surface-2: #f4f4f5;
+  --border: rgba(24, 24, 27, 0.10);
+  --border-strong: rgba(24, 24, 27, 0.18);
+  --text: #18181b;
+  --text-muted: #71717a;
+  --brand: #5e6ad2;
+  --brand-2: #8b5cf6;
+  --brand-3: #06b6d4;
+  --accent: #ec4899;
+  --glow: 0 1px 2px rgba(24, 24, 27, 0.04), 0 12px 32px -20px rgba(94, 106, 210, 0.45);
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-display: "Inter", system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
-body {
-  font-family: var(--font-sans);
+.dark {
+  --bg: #09090b;
+  --surface: #101012;
+  --surface-2: #1a1a1e;
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --text: #fafafa;
+  --text-muted: #a1a1aa;
+  --brand: #8b9aff;
+  --brand-2: #a78bfa;
+  --brand-3: #22d3ee;
+  --accent: #f472b6;
+  --glow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 16px 40px -24px rgba(139, 154, 255, 0.5);
 }
+
+/* ============ 映射为 Tailwind 工具类 ============ */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-foreground: var(--text);
+  --color-muted: var(--text-muted);
+  --color-brand: var(--brand);
+  --color-brand-2: var(--brand-2);
+  --color-brand-3: var(--brand-3);
+  --color-accent: var(--accent);
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-display: "Inter", system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+* { border-color: var(--border); }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+}
+
+::selection { background: color-mix(in srgb, var(--brand) 30%, transparent); }
+
+/* 滚动条（克制） */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--text-muted) 30%, transparent); border-radius: 999px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* ============ 通用视觉工具类 ============ */
+.font-display { font-family: var(--font-display); }
+.font-mono { font-family: var(--font-mono); }
+
+/* 渐变文字（克制两段） */
+.text-gradient {
+  background: linear-gradient(120deg, var(--brand) 0%, var(--brand-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 主按钮渐变（轻，不带外发光） */
+.bg-gradient-brand {
+  background-image: linear-gradient(180deg, color-mix(in srgb, var(--brand) 92%, white), var(--brand));
+}
+.bg-gradient-accent {
+  background-image: linear-gradient(180deg, color-mix(in srgb, var(--brand-2) 92%, white), var(--brand-2));
+}
+
+/* 面板（无模糊玻璃，仅表面色 + 细边框） */
+.glass {
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+/* 柔和投影 + 悬浮抬升 */
+.glow-border { box-shadow: var(--glow); }
+.hover-glow {
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.hover-glow:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+  box-shadow: var(--glow);
+}
+
+/* ============ 背景：单点柔光 + 细网格（Linear 式） ============ */
+.aurora-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+  pointer-events: none;
+}
+.aurora-glow {
+  position: absolute;
+  top: -45%;
+  left: 50%;
+  width: 900px;
+  height: 700px;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--brand) 14%, transparent),
+    transparent 65%
+  );
+}
+.aurora-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 90% 65% at 50% 0%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(ellipse 90% 65% at 50% 0%, #000 30%, transparent 100%);
+}
+
+/* 滚动入场（IntersectionObserver 添加 .in） */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { transition: none; opacity: 1; transform: none; }
+}
+
+/* 纯展示站：隐藏投稿/登录入口 */
+a[href="/submit"],
+a[href="/login"] { display: none !important; }

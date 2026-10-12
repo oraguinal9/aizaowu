@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 
-const ADMIN_EMAILS = ["admin@aizaowu.top"];
+const ADMIN_EMAILS = ["oragurnal9@outlook.com"];
 
 async function checkAdmin(request: NextRequest) {
   const authHeader = request.headers.get("authorization");

@@ -2,9 +2,9 @@
 
 export const APP_NAME = "AI造物";
 export const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://aizaow.com";
-export const APP_TAGLINE = "发现 AI 创造的酷项目";
+export const APP_TAGLINE = "独立开发者用AI造的酷项目";
 export const APP_DESCRIPTION =
-  "AI造物是一个发现和展示AI创造项目的平台。素人开发者用AI做出的网站、工具、游戏、应用，都在这里。";
+  "AI造物是独立开发者AI项目展示平台。素人开发者用AI做出的网站、工具、游戏、应用，都在这里。发现灵感，展示作品，连接同好。";
 
 /** 匿名投票每日上限 */
 export const ANON_VOTE_DAILY_LIMIT = 3;

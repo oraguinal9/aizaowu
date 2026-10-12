@@ -10,6 +10,10 @@ export async function POST(request: NextRequest) {
     if (!projectId) {
       return NextResponse.json({ success: false, error: "缺少项目ID" }, { status: 400 });
     }
+    // seed/mock 项目(id 非 uuid)不支持投票，避免 uuid 查询/插入报错
+    if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(projectId)) {
+      return NextResponse.json({ success: false, error: "项目ID无效" }, { status: 400 });
+    }
 
     const authHeader = request.headers.get("authorization");
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim()
@@ -100,6 +104,10 @@ export async function GET(request: NextRequest) {
   const projectId = searchParams.get("projectId");
   if (!projectId) {
     return NextResponse.json({ success: false, error: "缺少项目ID" }, { status: 400 });
+  }
+  // seed/mock 项目(id 非 uuid)视为未投票
+  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(projectId)) {
+    return NextResponse.json({ success: true, data: { voted: false } });
   }
 
   const authHeader = request.headers.get("authorization");

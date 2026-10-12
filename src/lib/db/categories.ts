@@ -1,13 +1,14 @@
 /**
  * 分类数据访问
  */
-import { supabaseAdmin } from "@/lib/supabase/admin";
+import { supabaseAdmin, BACKEND_ENABLED } from "@/lib/supabase/admin";
 import type { Category } from "@/types";
 import { MOCK_CATEGORIES } from "./mock";
 
 let useMock = false;
 
 export async function getCategories(): Promise<Category[]> {
+  if (!BACKEND_ENABLED) return MOCK_CATEGORIES;
   try {
     const { data, error } = await supabaseAdmin
       .from("categories").select("*").order("sort_order", { ascending: true });
@@ -18,6 +19,7 @@ export async function getCategories(): Promise<Category[]> {
 }
 
 export async function getCategoryBySlug(slug: string): Promise<Category | null> {
+  if (!BACKEND_ENABLED) return MOCK_CATEGORIES.find((c) => c.slug === slug) || null;
   if (useMock) return MOCK_CATEGORIES.find((c) => c.slug === slug) || null;
   try {
     const { data, error } = await supabaseAdmin

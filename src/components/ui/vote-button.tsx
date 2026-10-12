@@ -77,25 +77,23 @@ export function VoteButton({ projectId, initialVotes }: VoteButtonProps) {
   }, [loading, votes, voted, projectId]);
 
   return (
-    <div className="text-center">
+    <div className="flex flex-col items-center gap-1">
       <button
         onClick={handleVote}
         disabled={loading}
-        className={`inline-flex flex-col items-center gap-1 rounded-2xl px-8 py-4 text-2xl font-bold transition-all ${
+        className={`inline-flex items-center gap-2 rounded-lg border px-5 py-2.5 text-sm font-semibold transition-all ${
           voted
-            ? "bg-blue-100 text-blue-600 shadow-inner dark:bg-blue-900/40 dark:text-blue-400"
-            : "bg-white text-gray-700 shadow-md hover:shadow-lg hover:-translate-y-0.5 border border-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700"
+            ? "border-brand bg-brand/10 text-brand"
+            : "border-border bg-surface text-foreground hover:border-brand/50 hover:text-brand"
         }`}
       >
-        <span>{voted ? "👍" : "👍"}</span>
+        <svg viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
+          <path d="M10 16.5a1 1 0 01-.78-.37C8.6 15.3 5 11.2 5 8.2A3.2 3.2 0 018.2 5c.8 0 1.45.3 1.8.78A2.3 2.3 0 0111.8 5 3.2 3.2 0 0115 8.2c0 3-3.6 7.1-4.22 7.93A1 1 0 0110 16.5z" />
+        </svg>
         <span>{votes}</span>
       </button>
-      {message && (
-        <p className="mt-1 text-xs text-red-500">{message}</p>
-      )}
-      <p className="mt-1 text-xs text-gray-400">
-        {voted ? "已投票" : "点赞支持"}
-      </p>
+      <p className="text-xs text-muted">{voted ? "已投票" : "点赞支持"}</p>
+      {message && <p className="text-xs text-red-500">{message}</p>}
     </div>
   );
 }

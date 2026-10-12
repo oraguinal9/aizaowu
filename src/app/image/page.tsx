@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { supabase } from "@/lib/supabase/client";
+import { ImageIcon, Loader2 } from "lucide-react";
 
 const STYLES = [
   { key: "default", label: "通用", icon: "🎨" },
@@ -34,18 +35,22 @@ export default function ImagePage() {
   };
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-8">
-      <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white mb-2">🎨 AI绘画</h1>
-      <p className="text-gray-500 dark:text-gray-400 mb-6">
-        每天免费3次，登录6次 {remaining !== null && <span className="text-blue-600">（剩余{remaining}次）</span>}
+    <div className="mx-auto max-w-4xl px-4 py-10">
+      <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
+        <ImageIcon size={12} className="text-brand" />
+        AI IMAGE
+      </span>
+      <h1 className="mt-4 font-display text-3xl font-bold tracking-tight text-foreground">AI 绘画</h1>
+      <p className="mt-2 text-muted">
+        每天免费 3 次，登录 6 次 {remaining !== null && <span className="text-brand">（剩余 {remaining} 次）</span>}
       </p>
 
-      {error && <div className="mb-4 rounded-lg bg-red-50 p-3 text-sm text-red-600 dark:bg-red-900/30">{error}</div>}
+      {error && <div className="mb-4 rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-600 dark:text-red-400">{error}</div>}
 
-      <div className="mb-4 flex flex-wrap gap-2">
+      <div className="mt-6 mb-4 flex flex-wrap gap-2">
         {STYLES.map((s) => (
           <button key={s.key} onClick={() => setStyle(s.key)}
-            className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${style === s.key ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-400"}`}>
+            className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${style === s.key ? "bg-brand text-white" : "border border-border bg-surface text-foreground hover:border-brand/50"}`}>
             {s.icon} {s.label}
           </button>
         ))}
@@ -54,18 +59,19 @@ export default function ImagePage() {
       <div className="flex gap-3">
         <input value={prompt} onChange={(e) => setPrompt(e.target.value)}
           placeholder="描述你想要的画面，例如：一只在樱花树下睡觉的柴犬"
-          className="flex-1 rounded-xl border border-gray-300 px-4 py-3 text-gray-900 focus:border-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+          className="flex-1 rounded-lg border border-border bg-surface px-4 py-3 text-foreground placeholder:text-muted focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/15 transition-colors"
           onKeyDown={(e) => e.key === "Enter" && handleSubmit()} />
         <button onClick={handleSubmit} disabled={loading || !prompt.trim()}
-          className="shrink-0 rounded-xl bg-blue-600 px-6 py-3 font-medium text-white hover:bg-blue-700 disabled:opacity-50 transition-colors">
+          className="inline-flex shrink-0 items-center gap-2 rounded-lg bg-brand px-6 py-3 font-medium text-white transition hover:brightness-110 disabled:opacity-50">
+          {loading && <Loader2 size={16} className="animate-spin" />}
           {loading ? "生成中..." : "生成 →"}
         </button>
       </div>
 
       {loading && (
         <div className="mt-8 text-center">
-          <div className="inline-block h-64 w-64 animate-pulse rounded-xl bg-gray-200 dark:bg-gray-700" />
-          <p className="mt-3 text-sm text-gray-400">AI正在绘制中，请稍候...</p>
+          <div className="mx-auto inline-block h-64 w-64 animate-pulse rounded-xl bg-surface-2" />
+          <p className="mt-3 text-sm text-muted">AI 正在绘制中，请稍候...</p>
         </div>
       )}
 
@@ -73,7 +79,7 @@ export default function ImagePage() {
         <div className="mt-8">
           <div className="grid gap-4 sm:grid-cols-2">
             {urls.map((url, i) => (
-              <div key={i} className="overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700">
+              <div key={i} className="overflow-hidden rounded-xl border border-border">
                 <img src={url} alt={`生成图${i + 1}`} className="w-full object-cover" />
               </div>
             ))}

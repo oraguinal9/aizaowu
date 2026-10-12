@@ -9,6 +9,10 @@ export async function GET(request: NextRequest) {
   if (!projectId) {
     return NextResponse.json({ success: false, error: "缺少项目ID" }, { status: 400 });
   }
+  // seed/mock 项目(id 非 uuid，如 "seed-8")没有数据库评论，直接返回空列表，避免 uuid 查询报错
+  if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(projectId)) {
+    return NextResponse.json({ success: true, data: [] });
+  }
 
   const { data, error } = await supabaseAdmin
     .from("comments")
@@ -51,6 +55,10 @@ export async function POST(request: NextRequest) {
     const { projectId, body: commentBody, parentId } = body;
     if (!projectId || !commentBody) {
       return NextResponse.json({ success: false, error: "缺少参数" }, { status: 400 });
+    }
+    // 仅支持真实 uuid 项目评论（seed/mock 项目不可评论）
+    if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(projectId)) {
+      return NextResponse.json({ success: false, error: "项目ID无效" }, { status: 400 });
     }
 
     // 验证 parent 是顶层评论（只允许2层嵌套）

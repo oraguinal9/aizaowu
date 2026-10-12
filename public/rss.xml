@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>AI造物 - AI项目展示平台</title>
+  <link>https://aizaow.com</link>
+  <description>发现和展示AI创造项目的平台。素人开发者用AI做出的网站、工具、游戏、应用，都在这里。</description>
+  <language>zh-CN</language>
+  <lastBuildDate>$(date -R)</lastBuildDate>
+</channel>
+</rss>
