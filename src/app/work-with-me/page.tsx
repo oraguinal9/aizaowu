@@ -4,6 +4,7 @@ import { Globe, Bot, Clapperboard, ArrowRight, Check } from "lucide-react";
 import { WECHAT_ID } from "@/lib/constants";
 import { Reveal } from "@/components/ui/reveal";
 import WechatQr from "@/components/layout/wechat-qr";
+import QqCopy from "@/components/layout/qq-copy";
 
 export const metadata: Metadata = {
   title: "合作 · 从想法到上线",
@@ -32,7 +33,7 @@ const SERVICES = [
 ];
 
 const STEPS = [
-  { t: "聊需求", d: "微信或邮件说清想法，48 小时内给出可行性与方案边界 —— 做不了、不划算的会直说。" },
+  { t: "聊需求", d: "QQ 或微信说清想法，48 小时内给出可行性与方案边界 —— 做不了、不划算的会直说。" },
   { t: "定方案", d: "明确范围、周期与验收标准，给一个能点开看的效果基准（通常是站上某个现成作品）。" },
   { t: "做出来", d: "开发期间可看进度，关键节点先给可点的预览，避免「做完才发现不对」。" },
   { t: "交到底", d: "部署上线、域名证书、基础运维一并交付，附使用说明与后续维护约定。" },
@@ -109,9 +110,12 @@ export default function WorkWithMePage() {
             <div>
               <h2 className="font-display text-2xl font-bold text-foreground">有个想法？直接聊</h2>
               <p className="mt-3 max-w-md text-sm leading-relaxed text-muted">
-                加微信请备注来意（如「做个网站」「搭智能体」），一般当天回复。也可以先逛逛作品集，想清楚了再来。
+                加 QQ 或微信请备注来意（如「做个网站」「搭智能体」），一般当天回复。也可以先逛逛作品集，想清楚了再来。
               </p>
-              <p className="mt-4 font-mono text-sm text-brand">{WECHAT_ID}</p>
+              <div className="mt-4 flex flex-wrap items-center gap-3">
+                <QqCopy />
+                <span className="font-mono text-sm text-muted">微信 {WECHAT_ID}</span>
+              </div>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link href="/#gallery" className="inline-flex items-center gap-2 rounded-lg border border-border bg-bg px-4 py-2 text-sm font-medium text-foreground transition hover:border-border-strong">
                   先看看作品集

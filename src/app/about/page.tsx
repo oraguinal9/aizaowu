@@ -66,8 +66,11 @@ export default function AboutPage() {
           <p className="mt-3 leading-relaxed">
             有问题、建议或合作意向？欢迎通过以下方式联系：
           </p>
-          <p className="mt-4">
-            <Link href="/custom/" className="font-medium text-brand hover:underline">
+          <p className="mt-4 leading-relaxed">
+            QQ：<span className="font-mono font-medium text-brand">503956280</span>（备注来意）
+          </p>
+          <p className="mt-3">
+            <Link href="/work-with-me" className="font-medium text-brand hover:underline">
               → 定制服务与联系方式
             </Link>
           </p>

@@ -9,6 +9,7 @@ export default function Footer() {
           <div className="sm:col-span-2">
             <h4 className="mb-2 font-display font-semibold text-foreground">{APP_NAME} · 个人 AI 工作室</h4>
             <p className="max-w-sm text-muted">{APP_TAGLINE}。智能体、全栈网站、AI 视频、内容工程 —— 每个作品都现场可点开体验，从想法到上线的完整交付。</p>
+            <p className="mt-3 font-mono text-xs text-muted">QQ 503956280</p>
             <p className="mt-3">
               <Link href="/work-with-me" className="inline-flex items-center gap-1 font-medium text-brand transition-colors hover:brightness-110">
                 有想法？聊聊你的需求 →
