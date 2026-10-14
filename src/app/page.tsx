@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight, BookOpen, Clapperboard, MessageCircle } from "lucide-react";
 import { PenLine, Languages, Volume2, ImageIcon } from "lucide-react";
 import { getPublishedProjects } from "@/lib/db/projects";
-import { GalleryClient, type GalleryItem } from "@/components/gallery-client";
+import GalleryClient, { type GalleryItem } from "@/components/gallery-client";
 import { Reveal } from "@/components/ui/reveal";
 import { ABILITIES, HOMEPAGE_HIDDEN_SLUGS } from "@/lib/constants";
 
