@@ -1,9 +1,24 @@
 import { getPublishedProjects } from "@/lib/db/projects";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { PenLine, ArrowRight, Wrench } from "lucide-react";
 import { ProjectLogo } from "@/components/ui/project-logo";
+import { APP_NAME, APP_URL } from "@/lib/constants";
 
 export const revalidate = 300;
+
+export const metadata: Metadata = {
+  title: "AI 工具",
+  description: `可直接使用的 AI 应用 —— ${APP_NAME} 的内置小工具与在线作品，点开即用，不用注册。`,
+  alternates: { canonical: `${APP_URL}/tools` },
+  openGraph: {
+    title: `AI 工具 | ${APP_NAME}`,
+    description: `可直接使用的 AI 应用 —— ${APP_NAME} 的内置小工具与在线作品，点开即用。`,
+    url: `${APP_URL}/tools`,
+    siteName: APP_NAME,
+    images: [{ url: `${APP_URL}/opengraph-image`, width: 1200, height: 630, alt: `${APP_NAME} AI 工具` }],
+  },
+};
 
 export default async function ToolsPage() {
   const { projects } = await getPublishedProjects(1, 50);

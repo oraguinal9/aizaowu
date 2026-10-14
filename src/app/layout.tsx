@@ -18,7 +18,9 @@ export const metadata: Metadata = {
   },
   description: APP_DESCRIPTION,
   keywords: ["个人作品集", "AI 作品展示", "AI 智能体", "全栈开发", "独立开发者", "AI 视频", "AI 漫剧", "Next.js 项目", "个人工作室"],
-  alternates: { canonical: APP_URL },
+  // ⚠️ canonical 刻意不在根 layout 声明（2026-10-14 修复）
+  //    Next 的 metadata 会向子页继承：写在这里会让所有未自声明 canonical 的子页
+  //    被判成首页副本（/tools、/work-with-me 等曾被误判）。改由各页自己声明。
   verification: { other: { "baidu-site-verification": "codeva-aREaMJQuiN" } },
   openGraph: {
     title: `${APP_NAME} — ${APP_TAGLINE}`,

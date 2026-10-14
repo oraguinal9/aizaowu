@@ -4,7 +4,7 @@ export const APP_NAME = "AI造物";
 export const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://aizaow.com";
 export const APP_TAGLINE = "一个人 + AI，造出了一家公司的产品线";
 export const APP_DESCRIPTION =
-  "AI造物 · 个人 AI 工作室。47 个上线作品：AI 智能体、全栈网站、AI 视频、数据分析，每一个都能现场点开体验。从想法到上线的完整交付能力，全在这里看见。";
+  "AI造物 · 个人 AI 工作室。46 个上线作品：AI 智能体、全栈网站、AI 视频、数据分析，每一个都能现场点开体验。从想法到上线的完整交付能力，全在这里看见。";
 
 /** 匿名投票每日上限 */
 export const ANON_VOTE_DAILY_LIMIT = 3;

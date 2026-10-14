@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: `${APP_URL}/about` },
   openGraph: {
     title: `关于 | ${APP_NAME}`,
-    description: `关于${APP_NAME} — 一个人的 AI 作品陈列柜，47 个上线作品现场可点开`,
+    description: `关于${APP_NAME} — 一个人的 AI 作品陈列柜，作品全部在线可点开`,
     url: `${APP_URL}/about`,
     siteName: APP_NAME,
     images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: `${APP_NAME} 作品集` }],
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: `关于 | ${APP_NAME}`,
-    description: `关于${APP_NAME} — 一个人的 AI 作品陈列柜，47 个上线作品现场可点开`,
+    description: `关于${APP_NAME} — 一个人的 AI 作品陈列柜，作品全部在线可点开`,
     images: [OG_IMAGE],
   },
 };
@@ -30,25 +30,26 @@ export default function AboutPage() {
 
       <div className="space-y-8 text-foreground/80">
         <section className="rounded-xl border border-border bg-surface p-6">
-          <h2 className="font-display text-lg font-semibold tracking-tight text-foreground">🤖 {APP_NAME}是什么？</h2>
+          <h2 className="font-display text-lg font-semibold tracking-tight text-foreground">🛠 这里是什么？</h2>
           <p className="mt-3 leading-relaxed">
-            {APP_NAME}是一个AI创造项目的发现和展示平台。在这里，你可以找到各种由AI辅助开发的酷项目——网站、工具、游戏、应用，应有尽有。
+            这是{APP_NAME}——我一个人的作品陈列柜。站上的每一个项目，都是我用「一个人 + AI」的方式，
+            从想法一路做到能对外访问、能日常运行的服务。
           </p>
           <p className="mt-3 leading-relaxed">
-            我们相信，AI正在改变创造的方式。以前需要专业团队才能做的事情，现在一个人 + AI就能做到。
-            {APP_NAME}就是这些"AI创造者"的舞台。
+            以前需要一支团队才能做的产品，现在一个人也能做出来。我把它们全部摆在这里，
+            不放概念稿、不做效果图 —— 每一个都可以当场点开。
           </p>
         </section>
 
         <section className="rounded-xl border border-border bg-surface p-6">
-          <h2 className="font-display text-lg font-semibold tracking-tight text-foreground">🎯 为什么创建这个平台？</h2>
+          <h2 className="font-display text-lg font-semibold tracking-tight text-foreground">🎯 为什么把它们摆出来？</h2>
           <p className="mt-3 leading-relaxed">
-            作为一个素人开发者，我们发现一个问题：用AI做出了项目，却不知道在哪发布，怎么让别人看到。
-            GitHub虽然好，但国内访问不稳定；ProductHunt门槛太高，面向英文用户。
+            做出来的东西容易散落：有的在服务器上跑着，有的躺在硬盘里，自己都快忘了做过什么。
+            索性做一个柜子，把它们收在一处，也方便别人一次看清我到底会做什么。
           </p>
           <p className="mt-3 leading-relaxed">
-            就像当年传奇私服兴起时，有人做了私服发布平台一样——制作者需要曝光，玩家需要发现。
-            AI时代也需要这样一个"发布平台"。{APP_NAME}就是这个答案。
+            所以这里既不是平台、也不是商店，更不是接单广告 ——
+            只是一面墙，把我做过的东西挂出来给愿意看的人看。
           </p>
         </section>
 
@@ -71,7 +72,7 @@ export default function AboutPage() {
           </p>
           <p className="mt-3">
             <Link href="/work-with-me" className="font-medium text-brand hover:underline">
-              → 定制服务与联系方式
+              → 想聊点什么
             </Link>
           </p>
         </section>

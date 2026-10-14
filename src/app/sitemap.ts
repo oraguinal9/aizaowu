@@ -1,26 +1,33 @@
 import type { MetadataRoute } from "next";
 import { getPublishedProjects } from "@/lib/db/projects";
-import { getCategories } from "@/lib/db/categories";
 import { APP_URL } from "@/lib/constants";
+
+// ⚠️ 必须显式声明，否则 sitemap 会被 Next 冻结在构建时刻（2026-10-14 修复）
+export const revalidate = 3600;
+
+/** 「由简入深」学习站 L1–L16 —— 2026-10-14 已并入 aizaow.com/learn/<code>/（nginx alias） */
+const LEARN_SERIES = [
+  "ai101", "llm", "dl", "rag", "finetune", "rlhf", "aigc", "mcp",
+  "agent", "local", "prompt", "comfy", "ragpro", "ftplus", "dify", "reason",
+];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = APP_URL;
 
-  // 静态页
+  // 静态页（/search 等平台遗留页已移除；/work-with-me 已补入）
   const staticPages: MetadataRoute.Sitemap = [
-    { url: baseUrl, lastModified: new Date(), changeFrequency: "hourly", priority: 1.0 },
+    { url: baseUrl, lastModified: new Date(), changeFrequency: "weekly", priority: 1.0 },
     { url: `${baseUrl}/tools`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
-    { url: `${baseUrl}/learn/`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
+    { url: `${baseUrl}/learn/`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/work-with-me`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
     { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
-    { url: `${baseUrl}/search`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
   ];
 
-  // 分类页 — 使用当前时间（分类为静态数据）
-  const categories = await getCategories();
-  const categoryPages: MetadataRoute.Sitemap = categories.map((cat) => ({
-    url: `${baseUrl}/categories/${cat.slug}`,
+  // 学习站 L1–L16（现已是主域子路径，权重直接归主域）
+  const learnPages: MetadataRoute.Sitemap = LEARN_SERIES.map((code) => ({
+    url: `${baseUrl}/learn/${code}/`,
     lastModified: new Date(),
-    changeFrequency: "daily" as const,
+    changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
@@ -33,5 +40,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...categoryPages, ...projectPages];
+  return [...staticPages, ...learnPages, ...projectPages];
 }

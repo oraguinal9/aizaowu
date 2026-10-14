@@ -1,12 +1,19 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { ArrowRight, ArrowUpRight, BookOpen, Clapperboard, MessageCircle } from "lucide-react";
 import { PenLine, Languages, Volume2, ImageIcon } from "lucide-react";
 import { getPublishedProjects } from "@/lib/db/projects";
 import GalleryClient, { type GalleryItem } from "@/components/gallery-client";
 import { Reveal } from "@/components/ui/reveal";
-import { ABILITIES, HOMEPAGE_HIDDEN_SLUGS } from "@/lib/constants";
+import { ABILITIES, HOMEPAGE_HIDDEN_SLUGS, APP_NAME, APP_TAGLINE, APP_DESCRIPTION, APP_URL } from "@/lib/constants";
 
 export const revalidate = 300;
+
+export const metadata: Metadata = {
+  title: `${APP_NAME} — ${APP_TAGLINE}`,
+  description: APP_DESCRIPTION,
+  alternates: { canonical: APP_URL },
+};
 
 /* ============ 能力线 → 项目分组（按 slug） ============ */
 const GROUPS: Record<string, string[]> = {
@@ -115,13 +122,18 @@ const METHOD_ASSETS = [
 ];
 
 export default async function HomePage() {
-  const { projects: allProjects, total: totalPublished } = await getPublishedProjects(1, 100);
+  const { projects: allProjects } = await getPublishedProjects(1, 100);
 
   const projects = allProjects.filter((p) => !HOMEPAGE_HIDDEN_SLUGS.includes(p.slug));
-  const totalProjects = totalPublished || allProjects.length;
+  const totalProjects = projects.length;
   const liveCount = projects.filter((p) => p.url).length;
-  const agentCount = projects.filter((p) => groupOf(p.slug) === "agent").length;
-  const webCount = GROUPS.web.length;
+
+  /* ---- 数字口径唯一来源：全部按真实作品逐条统计 ----
+     2026-10-14 修复：原先 abilityCount 用 GROUPS.*.length 且 edu 写死 +5，
+     导致「能力线卡 52 / 展馆 46 / 首页 47」三套口径打架。现在全部走 countByGroup，
+     与展馆客户端用同一套 groupOf，数字必然一致。 */
+  const countByGroup = (k: string) => projects.filter((p) => groupOf(p.slug) === k).length;
+  const agentCount = countByGroup("agent");
 
   const galleryItems: GalleryItem[] = projects.map((p, i) => ({
     slug: p.slug,
@@ -141,15 +153,15 @@ export default async function HomePage() {
     { v: `${totalProjects}`, k: "上线作品" },
     { v: `${liveCount}+`, k: "在线可点开" },
     { v: "4", k: "能力线" },
-    { v: "16", k: "AI 学习站" },
+    { v: `${countByGroup("edu")}`, k: "AI 学习站" },
     { v: `${agentCount}`, k: "AI 智能体" },
   ];
 
   const abilityCount: Record<string, number> = {
-    agent: agentCount,
-    web: webCount,
-    studio: GROUPS.studio.length,
-    edu: GROUPS.edu.length + 5,
+    agent: countByGroup("agent"),
+    web: countByGroup("web"),
+    studio: countByGroup("studio"),
+    edu: countByGroup("edu"),
   };
 
   return (
