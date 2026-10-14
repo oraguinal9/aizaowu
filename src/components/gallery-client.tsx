@@ -16,6 +16,7 @@ export type GalleryItem = {
   catIcon: string;
   group: string; // agent | web | studio | edu | other
   cov: number; // 封面配色索引
+  thumb: string | null; // 真实界面截图
 };
 
 const COVERS = [
@@ -85,9 +86,13 @@ export default function GalleryClient({ items }: { items: GalleryItem[] }) {
             className="group overflow-hidden rounded-xl border border-border bg-surface transition-all hover:-translate-y-0.5 hover:border-border-strong hover:shadow-[var(--glow)]"
           >
             <div
-              className="cover-grad"
+              className={`cover-grad${it.thumb ? " cover-shot" : ""}`}
               style={{ ["--cov1" as string]: COVERS[it.cov % COVERS.length][0], ["--cov2" as string]: COVERS[it.cov % COVERS.length][1] }}
             >
+              {it.thumb && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={it.thumb} alt={`${it.name} 界面截图`} className="cover-img" loading="lazy" />
+              )}
               <div className="cover-title text-lg leading-snug">{it.name}</div>
               <div className="mt-1 flex items-center gap-2">
                 <span className="cover-domain">{it.url ? it.url.replace(/^https?:\/\//, "").replace(/\/$/, "") : it.catName}</span>

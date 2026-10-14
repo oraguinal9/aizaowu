@@ -7,6 +7,14 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "**.supabase.co" },
     ],
   },
+  async redirects() {
+    return [
+      // 旧平台页下线（本站已定位为个人作品展示，不再做投稿/投票/排行榜）
+      { source: "/rankings", destination: "/", permanent: true },
+      { source: "/discover", destination: "/", permanent: true },
+      { source: "/submit", destination: "/", permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

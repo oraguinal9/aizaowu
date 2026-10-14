@@ -7,42 +7,42 @@ import WechatQr from "@/components/layout/wechat-qr";
 import QqCopy from "@/components/layout/qq-copy";
 
 export const metadata: Metadata = {
-  title: "合作 · 从想法到上线",
-  description: "网站定制、智能体搭建、AI 视频制作 —— 一个人就是一支团队：需求、设计、开发、部署、运维全链路一人闭环。",
+  title: "聊聊 · 我怎么做东西",
+  description: "一个个人作品展示站：智能体、网站与平台、AI 视频三条线，47 个作品全部在线可点开。想聊技术、聊项目，加 QQ 就好。",
 };
 
-const SERVICES = [
+const PRACTICES = [
   {
     icon: Globe,
-    name: "网站 / 平台定制",
-    desc: "展示站、工具站、知识库、垂直导航 —— 域名、HTTPS、部署、运维全部交付，上线即可用。",
-    points: ["响应式 + SEO 基建", "备案/证书/运维全包", "上线后 30 天免费修小问题"],
+    name: "网站 / 平台",
+    desc: "从域名、备案、HTTPS 到前后端与数据库，一个人从头做到能对外访问、能日常运维。",
+    points: ["Next.js / Node 全栈", "域名证书备案一条龙", "部署与运维自己做"],
   },
   {
     icon: Bot,
-    name: "AI 智能体搭建",
-    desc: "客服、陪伴、规划、知识库问答 —— 按业务场景选型模型与架构，做好记忆与多轮任务编排。",
+    name: "AI 智能体",
+    desc: "对话、陪伴、规划、知识库问答 —— 按场景选模型，把记忆、工具链和多轮任务编排搭起来。",
     points: ["模型选型与提示词工程", "知识库 / RAG 接入", "成本与响应速度调优"],
   },
   {
     icon: Clapperboard,
     name: "AI 视频 / 漫剧",
-    desc: "角色资产、分镜脚本、图生视频、成片剪辑全流程 —— 短剧、宣传片、科普动画都能做。",
-    points: ["角色一致性工作流", "成片 2D/3D 风格可选", "交付成片 + 可复用管线"],
+    desc: "角色资产、分镜脚本、图生视频、成片剪辑 —— 整套管线自己搭、自己跑。",
+    points: ["角色一致性工作流", "本地 ComfyUI 出图出片", "成片 + 可复用管线"],
   },
 ];
 
 const STEPS = [
-  { t: "聊需求", d: "QQ 或微信说清想法，48 小时内给出可行性与方案边界 —— 做不了、不划算的会直说。" },
-  { t: "定方案", d: "明确范围、周期与验收标准，给一个能点开看的效果基准（通常是站上某个现成作品）。" },
-  { t: "做出来", d: "开发期间可看进度，关键节点先给可点的预览，避免「做完才发现不对」。" },
-  { t: "交到底", d: "部署上线、域名证书、基础运维一并交付，附使用说明与后续维护约定。" },
+  { t: "先想清楚", d: "把需求写下来。很多时候写着写着，就知道哪些其实是伪需求。" },
+  { t: "先跑最短链路", d: "不做大而全，先把一条能点开看的最短链路跑通，再往上加。" },
+  { t: "一路记录", d: "踩过的坑都记下来 —— 这些记录本身就是项目的一部分。" },
+  { t: "上线才算完", d: "部署、域名、证书、运维都算在项目里；能对外访问，才算做完。" },
 ];
 
 const FAQ = [
-  { q: "为什么是「一个人」？", a: "因为没有转包和传话损耗：需求、设计、代码、部署是同一双手，改需求不用层层翻译，反馈当天就能进版本。" },
-  { q: "周期和价格怎么算？", a: "按范围估：展示型网站通常以周计；智能体与定制平台以阶段计。聊清需求后给固定报价，中途不加价。" },
-  { q: "我能看到哪些已上线的例子？", a: "本站作品集里 30+ 个项目全部在线可点开 —— 不是设计稿，是正在运行的服务。" },
+  { q: "这些作品都是你做的？", a: "是。站上每一个作品都能点开看，一部分在 GitHub 上有公开仓库（github.com/oraguinal9）。" },
+  { q: "为什么是一个人做？", a: "因为需求、代码、部署在同一双手上：不用层层传话，改一版也就几分钟。" },
+  { q: "为什么搞这么多条线？", a: "做智能体要会前后端，做漫剧要懂出图出片，学习站是顺手沉淀下来的方法论。做久了就积成一片了。" },
 ];
 
 export default function WorkWithMePage() {
@@ -50,23 +50,23 @@ export default function WorkWithMePage() {
     <div className="mx-auto max-w-5xl px-4 py-14 sm:py-20">
       {/* Hero */}
       <section className="text-center">
-        <span className="eyebrow-line">WORK WITH ME</span>
+        <span className="eyebrow-line">ABOUT MY WORK</span>
         <h1 className="mx-auto mt-5 max-w-2xl font-display text-3xl font-bold leading-[1.2] tracking-tight text-foreground sm:text-5xl">
-          从想法到上线，
+          一个人，
           <br />
-          <span className="text-gradient">一个人就是一支团队</span>
+          <span className="text-gradient">一堆自己做出来的东西</span>
         </h1>
         <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted">
-          站上的 47 个作品就是能力证明：不是概念稿，是正在运行的服务。如果你也有想做成的东西 —— 往下看，然后聊聊。
+          这里不是产品页，是我的作品柜。47 个作品全部在线、现场可点开 —— 想聊技术、聊项目，或者只是好奇某个东西怎么做的，都欢迎。
         </p>
       </section>
 
-      {/* 服务 */}
+      {/* 三条线 */}
       <Reveal>
         <section className="mt-16">
-          <h2 className="font-display text-2xl font-bold text-foreground">三种合作形态</h2>
+          <h2 className="font-display text-2xl font-bold text-foreground">我平时在做的三类东西</h2>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
-            {SERVICES.map((s) => (
+            {PRACTICES.map((s) => (
               <div key={s.name} className="ability-card flex flex-col p-6">
                 <div className="mb-4 grid h-11 w-11 place-items-center rounded-lg border border-border bg-bg text-brand">
                   <s.icon size={20} />
@@ -87,10 +87,10 @@ export default function WorkWithMePage() {
         </section>
       </Reveal>
 
-      {/* 流程 */}
+      {/* 做法 */}
       <Reveal>
         <section className="mt-16">
-          <h2 className="font-display text-2xl font-bold text-foreground">怎么开始</h2>
+          <h2 className="font-display text-2xl font-bold text-foreground">我一般怎么做东西</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {STEPS.map((st, i) => (
               <div key={st.t} className="rounded-xl border border-border bg-surface p-5">
@@ -108,9 +108,9 @@ export default function WorkWithMePage() {
         <section className="mt-16 overflow-hidden rounded-2xl border border-border bg-surface">
           <div className="grid items-center gap-8 p-8 sm:p-10 md:grid-cols-[1fr_auto]">
             <div>
-              <h2 className="font-display text-2xl font-bold text-foreground">有个想法？直接聊</h2>
+              <h2 className="font-display text-2xl font-bold text-foreground">想聊就加我</h2>
               <p className="mt-3 max-w-md text-sm leading-relaxed text-muted">
-                加 QQ 或微信请备注来意（如「做个网站」「搭智能体」），一般当天回复。也可以先逛逛作品集，想清楚了再来。
+                QQ 加我就行，聊技术、聊项目、或者只是问问某个东西怎么做的都欢迎，不用客套。
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-3">
                 <QqCopy />
@@ -118,9 +118,18 @@ export default function WorkWithMePage() {
               </div>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link href="/#gallery" className="inline-flex items-center gap-2 rounded-lg border border-border bg-bg px-4 py-2 text-sm font-medium text-foreground transition hover:border-border-strong">
-                  先看看作品集
+                  先看看作品
                   <ArrowRight size={14} />
                 </Link>
+                <a
+                  href="https://github.com/oraguinal9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-lg border border-border bg-bg px-4 py-2 text-sm font-medium text-foreground transition hover:border-border-strong"
+                >
+                  GitHub
+                  <ArrowRight size={14} />
+                </a>
               </div>
             </div>
             {/* 微信二维码位：public/wechat-qr.png 就位后自动显示 */}

@@ -12,7 +12,7 @@ export default function Footer() {
             <p className="mt-3 font-mono text-xs text-muted">QQ 503956280</p>
             <p className="mt-3">
               <Link href="/work-with-me" className="inline-flex items-center gap-1 font-medium text-brand transition-colors hover:brightness-110">
-                有想法？聊聊你的需求 →
+                想聊点什么 →
               </Link>
             </p>
           </div>

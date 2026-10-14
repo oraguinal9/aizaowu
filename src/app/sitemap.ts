@@ -9,9 +9,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 静态页
   const staticPages: MetadataRoute.Sitemap = [
     { url: baseUrl, lastModified: new Date(), changeFrequency: "hourly", priority: 1.0 },
-    { url: `${baseUrl}/rankings`, lastModified: new Date(), changeFrequency: "hourly", priority: 0.8 },
+    { url: `${baseUrl}/tools`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
+    { url: `${baseUrl}/learn/`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
     { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
-    { url: `${baseUrl}/search`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+    { url: `${baseUrl}/search`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
   ];
 
   // 分类页 — 使用当前时间（分类为静态数据）

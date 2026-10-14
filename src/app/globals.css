@@ -289,3 +289,20 @@ a[href="/login"] { display: none !important; }
 /* 隐藏投稿/登录入口（纯展示站） */
 a[href="/submit"],
 a[href="/login"] { display: none !important; }
+
+/* 真实作品截图封面（有图用图，无图退化为渐变） */
+.cover-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+.cover-shot::before { display: none; }
+.cover-shot::after {
+  background-image: none;
+  background: linear-gradient(to top, rgba(6, 6, 10, .94) 0%, rgba(6, 6, 10, .62) 40%, rgba(6, 6, 10, 0) 100%);
+  mask-image: none;
+}

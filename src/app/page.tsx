@@ -53,6 +53,7 @@ const FLAGSHIP = [
     tags: ["语音交互", "LLM 应用", "PWA/APK", "全栈"],
     cov1: "#5e6ad2",
     cov2: "#ec4899",
+    thumb: "/covers/xiaoling-ai.jpg" as string | null,
   },
   {
     idx: "02",
@@ -66,6 +67,7 @@ const FLAGSHIP = [
     tags: ["旅行场景", "Agent 编排", "五城部署", "出处制度"],
     cov1: "#22d3ee",
     cov2: "#5e6ad2",
+    thumb: "/covers/guantu-show-butler.jpg" as string | null,
   },
   {
     idx: "03",
@@ -79,6 +81,7 @@ const FLAGSHIP = [
     tags: ["原创讲义", "16 个站点", "零框架纯静态", "持续更新"],
     cov1: "#34d399",
     cov2: "#22d3ee",
+    thumb: "/covers/learn-portal.jpg" as string | null,
   },
   {
     idx: "04",
@@ -92,6 +95,7 @@ const FLAGSHIP = [
     tags: ["数据工程", "四维评分", "每日核验", "原创内容"],
     cov1: "#a78bfa",
     cov2: "#f472b6",
+    thumb: "/covers/xingjian-github-hall.jpg" as string | null,
   },
 ] as const;
 
@@ -130,6 +134,7 @@ export default async function HomePage() {
     catIcon: p.category?.icon || "📦",
     group: groupOf(p.slug),
     cov: i,
+    thumb: p.thumbnail_url,
   }));
 
   const statBand = [
@@ -240,9 +245,13 @@ export default async function HomePage() {
                       <span className="browser-url">{f.domain}</span>
                     </div>
                     <div
-                      className="cover-grad"
+                      className={`cover-grad${f.thumb ? " cover-shot" : ""}`}
                       style={{ ["--cov1" as string]: f.cov1, ["--cov2" as string]: f.cov2, aspectRatio: "16 / 8.5" }}
                     >
+                      {f.thumb && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={f.thumb} alt={`${f.name} 界面截图`} className="cover-img" />
+                      )}
                       <div className="cover-title text-2xl sm:text-3xl">{f.name}</div>
                       <div className="cover-domain mt-1">{f.tag}</div>
                       <span className="absolute right-4 top-4 rounded-md bg-black/30 px-2 py-1 text-[11px] font-medium text-white/85 backdrop-blur transition group-hover:bg-brand group-hover:text-white">
@@ -318,7 +327,7 @@ export default async function HomePage() {
         </Reveal>
       </section>
 
-      {/* ============ ⑥ 合作转化 ============ */}
+      {/* ============ ⑥ 交流 ============ */}
       <section className="py-14">
         <Reveal>
           <div className="relative overflow-hidden rounded-2xl border border-brand/30 bg-gradient-to-br from-brand/10 via-surface to-surface p-8 text-center sm:p-14">
@@ -330,12 +339,12 @@ export default async function HomePage() {
               }}
             />
             <div className="relative">
-              <span className="eyebrow-line justify-center">WORK WITH ME</span>
+              <span className="eyebrow-line justify-center">SAY HI</span>
               <h2 className="mx-auto mt-4 max-w-xl font-display text-2xl font-bold text-foreground sm:text-3xl">
-                有个想做成的东西？
+                想聊点什么？
               </h2>
               <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-muted">
-                网站定制 · 智能体搭建 · AI 视频制作。聊清需求给固定报价，中途不加价；交付包含部署、域名、HTTPS 与基础运维。
+                这里是我自己一个个做出来又上线的东西。如果你也在折腾类似的事，或者好奇哪个项目是怎么做的 —— 加 QQ 聊聊，不谈生意也行。
               </p>
               <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
                 <Link
@@ -343,7 +352,7 @@ export default async function HomePage() {
                   className="inline-flex items-center gap-2 rounded-lg bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:brightness-110"
                 >
                   <MessageCircle size={15} />
-                  聊一个你的想法
+                  我的联系方式
                 </Link>
                 <Link
                   href="#gallery"

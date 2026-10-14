@@ -5,20 +5,20 @@ import { APP_NAME, APP_URL } from "@/lib/constants";
 const OG_IMAGE = `${APP_URL}/opengraph-image`;
 
 export const metadata: Metadata = {
-  title: "关于我们",
-  description: `关于${APP_NAME} — AI项目展示和发现平台`,
+  title: "关于",
+  description: `关于${APP_NAME} — 一个人的 AI 作品陈列柜：智能体、网站与平台、AI 视频三条线，作品全部在线可点开`,
   alternates: { canonical: `${APP_URL}/about` },
   openGraph: {
-    title: `关于我们 | ${APP_NAME}`,
-    description: `关于${APP_NAME} — AI项目展示和发现平台`,
+    title: `关于 | ${APP_NAME}`,
+    description: `关于${APP_NAME} — 一个人的 AI 作品陈列柜，47 个上线作品现场可点开`,
     url: `${APP_URL}/about`,
     siteName: APP_NAME,
-    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: "关于我们" }],
+    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: `${APP_NAME} 作品集` }],
   },
   twitter: {
     card: "summary_large_image",
-    title: `关于我们 | ${APP_NAME}`,
-    description: `关于${APP_NAME} — AI项目展示和发现平台`,
+    title: `关于 | ${APP_NAME}`,
+    description: `关于${APP_NAME} — 一个人的 AI 作品陈列柜，47 个上线作品现场可点开`,
     images: [OG_IMAGE],
   },
 };
@@ -53,11 +53,11 @@ export default function AboutPage() {
         </section>
 
         <section className="rounded-xl border border-border bg-surface p-6">
-          <h2 className="font-display text-lg font-semibold tracking-tight text-foreground">📌 关于投稿</h2>
+          <h2 className="font-display text-lg font-semibold tracking-tight text-foreground">📌 关于本站</h2>
           <ul className="mt-3 list-disc space-y-2 pl-5">
-            <li>本站为个人作品展示，暂不接受用户投稿</li>
-            <li>如需展示你的AI项目，可与我们联系</li>
-            <li>感谢理解与支持</li>
+            <li>这是我个人的作品展示站，陈列自己做出来并已上线的项目</li>
+            <li>不接投稿、不做平台，站上作品全部出自本人</li>
+            <li>每一个都能点开 —— 看到的就是正在运行的东西，不是设计稿</li>
           </ul>
         </section>
 

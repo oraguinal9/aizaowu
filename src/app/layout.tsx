@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     template: `%s | ${APP_NAME}`,
   },
   description: APP_DESCRIPTION,
-  keywords: ["AI项目", "AI工具", "AI应用", "AI创造", "素人开发者", "AI编程", "项目展示", "AI造物"],
+  keywords: ["个人作品集", "AI 作品展示", "AI 智能体", "全栈开发", "独立开发者", "AI 视频", "AI 漫剧", "Next.js 项目", "个人工作室"],
   alternates: { canonical: APP_URL },
   verification: { other: { "baidu-site-verification": "codeva-aREaMJQuiN" } },
   openGraph: {

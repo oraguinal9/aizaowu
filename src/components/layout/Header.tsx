@@ -49,7 +49,7 @@ export default function Header() {
             href="/work-with-me"
             className="hidden items-center gap-1 rounded-md bg-brand px-3 py-1.5 text-sm font-semibold text-white transition hover:brightness-110 sm:inline-flex"
           >
-            聊一个想法
+            联系方式
           </Link>
           <ThemeToggle />
           <button
@@ -72,7 +72,7 @@ export default function Header() {
                 {n.label}
               </Link>
             ))}
-            <Link href="/work-with-me" onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm font-medium text-brand hover:bg-surface-2">聊一个想法 · 合作</Link>
+            <Link href="/work-with-me" onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm font-medium text-brand hover:bg-surface-2">聊聊 · 联系方式</Link>
             <Link href="/search" onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm text-foreground hover:bg-surface-2">🔍 搜索</Link>
           </nav>
         </div>
