@@ -438,4 +438,13 @@ export const MOCK_PROJECTS: Project[] = [
     published_at: "2026-10-12T02:30:00Z", updated_at: "2026-10-12T02:30:00Z",
     category: MOCK_CATEGORIES[7],
   },
+  {
+    id: "seed-47", slug: "xingjian-github-hall", name: "星鉴 · GitHub 高星项目录", tagline: "高星不等于好用，这里替你验真",
+    description: "GitHub 高星项目情报库——每个项目都经四维重新打分，附「真问题 · 硬伤清单」、上手门槛分级与数据口径冲突标注。不吹 star 数，只讲这个项目到底值不值得上手。\n\n按范式、标签、对比多入口浏览，适合选型时先来这里验真再决定。",
+    url: "https://xingjian.zbjh.top", category_id: "cat-7", tags: ["GitHub", "项目评测", "选型", "验真", "开发者"],
+    screenshots: [], thumbnail_url: null, status: "published", vote_count: 2, comment_count: 0,
+    view_count: 18, submitter_id: null, is_featured: false, created_at: "2026-10-13T00:00:00Z",
+    published_at: "2026-10-13T00:00:00Z", updated_at: "2026-10-13T00:00:00Z",
+    category: MOCK_CATEGORIES[6],
+  },
 ];

@@ -2,9 +2,16 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, Search, Sparkles, Plus } from "lucide-react";
+import { Menu, Search, Sparkles } from "lucide-react";
 import { APP_NAME } from "@/lib/constants";
 import { ThemeToggle } from "@/components/theme-toggle";
+
+const NAV = [
+  { href: "/#abilities", label: "能力" },
+  { href: "/#flagship", label: "代表案例" },
+  { href: "/#gallery", label: "作品集" },
+  { href: "/#method", label: "方法论" },
+];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -12,19 +19,20 @@ export default function Header() {
   return (
     <header className="sticky top-11 z-50 border-b border-border bg-bg/80 backdrop-blur-md">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
-        {/* 左 */}
+        {/* 左：身份 */}
         <div className="flex items-center gap-2 sm:gap-4">
           <Link href="/" className="flex items-center gap-2 font-display text-base font-bold">
             <span className="grid h-7 w-7 place-items-center rounded-md border border-border bg-surface text-brand">
               <Sparkles size={14} />
             </span>
-            <span className="hidden text-foreground sm:inline">{APP_NAME}</span>
+            <span className="text-foreground">{APP_NAME}<span className="ml-1.5 hidden text-xs font-medium text-muted sm:inline">· 个人 AI 工作室</span></span>
           </Link>
-          <nav className="hidden items-center gap-0.5 text-sm sm:flex">
-            <Link href="/discover" className="rounded-md px-3 py-1.5 text-muted transition-colors hover:bg-surface-2 hover:text-foreground">发现</Link>
-            <Link href="/categories/productivity" className="rounded-md px-3 py-1.5 text-muted transition-colors hover:bg-surface-2 hover:text-foreground">分类</Link>
-            <Link href="/rankings" className="rounded-md px-3 py-1.5 text-muted transition-colors hover:bg-surface-2 hover:text-foreground">排行榜</Link>
-            <Link href="/tools" className="rounded-md px-3 py-1.5 font-medium text-brand transition-colors hover:bg-surface-2">AI工具</Link>
+          <nav className="hidden items-center gap-0.5 text-sm md:flex">
+            {NAV.map((n) => (
+              <Link key={n.href} href={n.href} className="rounded-md px-3 py-1.5 text-muted transition-colors hover:bg-surface-2 hover:text-foreground">
+                {n.label}
+              </Link>
+            ))}
           </nav>
         </div>
 
@@ -38,18 +46,17 @@ export default function Header() {
             <Search size={15} />
           </Link>
           <Link
-            href="/submit"
+            href="/work-with-me"
             className="hidden items-center gap-1 rounded-md bg-brand px-3 py-1.5 text-sm font-semibold text-white transition hover:brightness-110 sm:inline-flex"
           >
-            <Plus size={14} />
-            提交
+            聊一个想法
           </Link>
           <ThemeToggle />
           <button
             type="button"
             onClick={() => setOpen(!open)}
             aria-label="菜单"
-            className="flex h-8 w-8 items-center justify-center rounded-md border border-border bg-surface text-foreground sm:hidden"
+            className="flex h-8 w-8 items-center justify-center rounded-md border border-border bg-surface text-foreground md:hidden"
           >
             <Menu size={16} />
           </button>
@@ -58,12 +65,14 @@ export default function Header() {
 
       {/* 移动端下拉 */}
       {open && (
-        <div className="border-t border-border bg-bg p-2 sm:hidden">
+        <div className="border-t border-border bg-bg p-2 md:hidden">
           <nav className="flex flex-col gap-0.5">
-            <Link href="/discover" onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm text-foreground hover:bg-surface-2">🚀 发现项目</Link>
-            <Link href="/submit" onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm text-brand hover:bg-surface-2">+ 提交项目</Link>
-            <Link href="/categories/productivity" onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm text-foreground hover:bg-surface-2">📂 分类浏览</Link>
-            <Link href="/rankings" onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm text-foreground hover:bg-surface-2">🏆 排行榜</Link>
+            {NAV.map((n) => (
+              <Link key={n.href} href={n.href} onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm text-foreground hover:bg-surface-2">
+                {n.label}
+              </Link>
+            ))}
+            <Link href="/work-with-me" onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm font-medium text-brand hover:bg-surface-2">聊一个想法 · 合作</Link>
             <Link href="/search" onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm text-foreground hover:bg-surface-2">🔍 搜索</Link>
           </nav>
         </div>
