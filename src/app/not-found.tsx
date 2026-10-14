@@ -20,11 +20,11 @@ export default function NotFound() {
           返回首页
         </Link>
         <Link
-          href="/discover"
+          href="/#gallery"
           className="inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-foreground transition hover:border-border-strong"
         >
           <Compass size={16} className="text-brand" />
-          去发现项目
+          看看全部作品
         </Link>
       </div>
     </div>
