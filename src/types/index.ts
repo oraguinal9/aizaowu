@@ -11,6 +11,18 @@ export interface Category {
   sort_order: number;
 }
 
+/** 项目复盘三段（详情页深度内容，可选） */
+export interface ProjectStory {
+  /** 难在哪 */
+  challenge: string;
+  /** 怎么做的 */
+  approach: string;
+  /** 结果如何 */
+  result: string;
+  /** 技术栈 / 关键工具（可选） */
+  stack?: string[];
+}
+
 /** 项目 */
 export interface Project {
   id: string;
@@ -32,6 +44,8 @@ export interface Project {
   created_at: string;
   published_at: string;
   updated_at: string;
+  /** 详情页「复盘」三段（可选，深度案例用） */
+  story?: ProjectStory | null;
   // JOIN 字段
   category?: Category | null;
 }

@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Globe, Bot, Clapperboard, ArrowRight, Check } from "lucide-react";
-import { WECHAT_ID } from "@/lib/constants";
 import { Reveal } from "@/components/ui/reveal";
-import WechatQr from "@/components/layout/wechat-qr";
 import QqCopy from "@/components/layout/qq-copy";
 
 export const metadata: Metadata = {
@@ -106,15 +104,14 @@ export default function WorkWithMePage() {
       {/* 联系 */}
       <Reveal>
         <section className="mt-16 overflow-hidden rounded-2xl border border-border bg-surface">
-          <div className="grid items-center gap-8 p-8 sm:p-10 md:grid-cols-[1fr_auto]">
-            <div>
+          <div className="p-8 sm:p-10">
+            <div className="max-w-xl">
               <h2 className="font-display text-2xl font-bold text-foreground">想聊就加我</h2>
               <p className="mt-3 max-w-md text-sm leading-relaxed text-muted">
                 QQ 加我就行，聊技术、聊项目、或者只是问问某个东西怎么做的都欢迎，不用客套。
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-3">
                 <QqCopy />
-                <span className="font-mono text-sm text-muted">微信 {WECHAT_ID}</span>
               </div>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link href="/#gallery" className="inline-flex items-center gap-2 rounded-lg border border-border bg-bg px-4 py-2 text-sm font-medium text-foreground transition hover:border-border-strong">
@@ -132,8 +129,6 @@ export default function WorkWithMePage() {
                 </a>
               </div>
             </div>
-            {/* 微信二维码位：public/wechat-qr.png 就位后自动显示 */}
-            <WechatQr />
           </div>
         </section>
       </Reveal>

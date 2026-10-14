@@ -279,13 +279,6 @@ a[href="/login"] { display: none !important; }
 }
 .eyebrow-line::before { content: ""; width: 22px; height: 1px; background: var(--brand); }
 
-/* 合作区微信占位 */
-.qr-slot {
-  border: 1.5px dashed var(--border-strong);
-  border-radius: 12px;
-  background: color-mix(in srgb, var(--surface-2) 60%, transparent);
-}
-
 /* 隐藏投稿/登录入口（纯展示站） */
 a[href="/submit"],
 a[href="/login"] { display: none !important; }

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ExternalLink, CalendarDays, Eye, Tag, ChevronRight } from "lucide-react";
+import { ArrowLeft, ExternalLink, CalendarDays, Eye, Tag, ChevronRight, AlertCircle, Lightbulb, TrendingUp, Wrench } from "lucide-react";
 import { getProjectBySlug, getRelatedProjects } from "@/lib/db/projects";
 import { formatDate } from "@/lib/utils";
 import { VoteButton } from "@/components/ui/vote-button";
@@ -128,6 +128,49 @@ export default async function ProjectDetailPage({ params }: Props) {
             {project.description}
           </div>
         </section>
+
+        {/* 项目复盘（深度案例） */}
+        {project.story && (
+          <section className="mb-8">
+            <h2 className="mb-4 font-display text-lg font-semibold tracking-tight text-foreground">
+              项目复盘
+            </h2>
+            <div className="grid gap-3 sm:grid-cols-3">
+              {(
+                [
+                  { icon: AlertCircle, label: "难在哪", text: project.story.challenge, accent: "#f59e0b" },
+                  { icon: Lightbulb, label: "怎么做的", text: project.story.approach, accent: "var(--brand)" },
+                  { icon: TrendingUp, label: "结果如何", text: project.story.result, accent: "#34d399" },
+                ] as const
+              ).map((s) => (
+                <div
+                  key={s.label}
+                  className="rounded-xl border border-border bg-surface p-5"
+                  style={{ borderTop: `2px solid ${s.accent}` }}
+                >
+                  <div className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted">
+                    <s.icon size={14} style={{ color: s.accent }} />
+                    {s.label}
+                  </div>
+                  <p className="text-sm leading-relaxed text-foreground/85">{s.text}</p>
+                </div>
+              ))}
+            </div>
+            {project.story.stack && project.story.stack.length > 0 && (
+              <div className="mt-4 flex flex-wrap items-center gap-2">
+                <Wrench size={14} className="text-muted" />
+                {project.story.stack.map((t: string) => (
+                  <span
+                    key={t}
+                    className="rounded-md border border-border bg-surface-2 px-2 py-0.5 text-xs text-muted"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            )}
+          </section>
+        )}
 
         {/* 操作条 */}
         <div className="mb-8 flex flex-wrap items-center gap-4 rounded-xl border border-border bg-surface p-5">

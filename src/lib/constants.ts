@@ -28,9 +28,7 @@ export const DEFAULT_CATEGORIES = [
 
 /** ============ 工作室身份 ============ */
 
-/** 联系方式（微信二维码图片放 public/wechat-qr.png 后自动显示） */
-export const WECHAT_ID = "AI造物工作室";
-export const WECHAT_QR = "/wechat-qr.png";
+/** 联系方式（象征性入口，本站不做商务接单） */
 export const QQ_NUMBER = "503956280";
 
 /** 不在首页展馆展示、仅保留直达详情页的项目（合规考量） */
