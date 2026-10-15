@@ -483,4 +483,19 @@ export const MOCK_PROJECTS: Project[] = [
     published_at: "2026-10-13T00:00:00Z", updated_at: "2026-10-13T00:00:00Z",
     category: MOCK_CATEGORIES[6],
   },
+  {
+    id: "seed-48", slug: "ligong-engineer-agent", name: "李工 · 工程师智能体", tagline: "氢能工程师人设的课堂问答与知识库智能体",
+    description: "以「李工」工程师人设为核心的垂直问答智能体——面向氢燃料汽车、预测保养等工程场景，按知识库优先原则作答：命中知识库给带出处的专业解答，未命中如实说明再补经验建议。\n\n支持流式输出、TTS 语音朗读、知识库在线上传与热重建；另提供便携版完整下载，可离线跑在自己电脑上。\n\n在线版为通用模式（知识库留空），适合先体验交互；课堂/团队场景可上传自己的资料秒建专属知识库。",
+    url: "https://aizaow.com/ligong/", category_id: "cat-7", tags: ["AI Agent", "知识库问答", "流式输出", "TTS", "垂直人设"],
+    screenshots: ["/covers/ligong-engineer-agent.jpg"], thumbnail_url: "/covers/ligong-engineer-agent.jpg", status: "published", vote_count: 0, comment_count: 0,
+    story: {
+      challenge: "通用大模型回答工程问题容易「一本正经地编」——课堂场景要的是有出处、可核对的答案，还得让非技术学生三秒上手。",
+      approach: "内置工程师人设系统提示词，回答严格优先依据知识库分块检索结果，未命中先声明再给经验建议；本地建索引（分块+IDF），支持 .md/.docx/.pdf 上传热重建；前端流式渲染 + TTS 朗读，另发便携版支持离线部署。",
+      result: "从提问到流式作答全程在线可验，知识库命中给出处、未命中不编造；已并入 aizaow.com/ligong/ 主站路径，同时保留独立域名 ligong.aizaow.com 并行。",
+      stack: ["Node 零依赖", "本地知识库索引", "SSE 流式", "Edge-TTS"],
+    },
+    view_count: 0, submitter_id: null, is_featured: false, created_at: "2026-10-15T12:00:00Z",
+    published_at: "2026-10-15T12:00:00Z", updated_at: "2026-10-15T12:00:00Z",
+    category: MOCK_CATEGORIES[6],
+  },
 ];

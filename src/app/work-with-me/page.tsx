@@ -8,7 +8,7 @@ import { APP_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "聊聊 · 我怎么做东西",
-  description: "一个个人作品展示站：智能体、网站与平台、AI 视频三条线，46 个作品全部在线可点开。想聊技术、聊项目，加 QQ 就好。",
+  description: "一个个人作品展示站：智能体、网站与平台、AI 视频三条线，47 个作品全部在线可点开。想聊技术、聊项目，加 QQ 就好。",
   alternates: { canonical: `${APP_URL}/work-with-me` },
 };
 

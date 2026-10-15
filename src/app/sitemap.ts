@@ -11,6 +11,26 @@ const LEARN_SERIES = [
   "agent", "local", "prompt", "comfy", "ragpro", "ftplus", "dify", "reason",
 ];
 
+/** 「内容作品集」12 个自建内容站 —— 2026-10-14 并入 aizaow.com/works/<code>/（nginx alias） */
+const WORKS_SERIES = [
+  "study", "yuwen", "math", "english", "englishclub",
+  "bkzy", "planner",
+  "opc", "manju", "xianxia",
+  "xingjian", "aisai",
+];
+
+/** 「执笔惊鸿」网文写作智库 —— 2026-10-14 并入 aizaow.com/writer/（nginx alias） */
+const WRITER_PAGES = [
+  "/writer/",
+  "/writer/guide/",
+  "/writer/skill/",
+  "/writer/ai/",
+  "/writer/oss/",
+  "/writer/platform/",
+  "/writer/news/",
+  "/writer/tools/",
+];
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = APP_URL;
 
@@ -19,6 +39,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: baseUrl, lastModified: new Date(), changeFrequency: "weekly", priority: 1.0 },
     { url: `${baseUrl}/tools`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
     { url: `${baseUrl}/learn/`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/works/`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/work-with-me`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
     { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
   ];
@@ -31,6 +52,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
+  // 内容站（现已是主域子路径，权重直接归主域）
+  const worksPages: MetadataRoute.Sitemap = WORKS_SERIES.map((code) => ({
+    url: `${baseUrl}/works/${code}/`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  // 网文写作智库（原 www.zbjh.top 内容，现已是主域子路径）
+  const writerPages: MetadataRoute.Sitemap = WRITER_PAGES.map((p) => ({
+    url: `${baseUrl}${p}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: p === "/writer/" ? 0.8 : 0.7,
+  }));
+
   // 项目详情页 — 使用项目实际的 updated_at
   const { projects } = await getPublishedProjects(1, 5000);
   const projectPages: MetadataRoute.Sitemap = projects.map((project) => ({
@@ -40,5 +77,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...learnPages, ...projectPages];
+  return [...staticPages, ...learnPages, ...worksPages, ...writerPages, ...projectPages];
 }

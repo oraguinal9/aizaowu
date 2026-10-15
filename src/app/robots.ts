@@ -17,13 +17,14 @@ export default function robots(): MetadataRoute.Robots {
           "/discover",
           "/rankings",
           "/submit",
-          "/write",
+          // ⚠️ 必须带 $ 结尾锚点：robots 是前缀匹配，裸 "/write" 会连带封禁 /writer/
+          "/write$",
           "/translate",
           "/tts",
           "/image",
         ],
       },
     ],
-    sitemap: `${APP_URL}/sitemap.xml`,
+    sitemap: [`${APP_URL}/sitemap.xml`, `${APP_URL}/writer/sitemap.xml`],
   };
 }

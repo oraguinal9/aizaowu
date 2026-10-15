@@ -22,7 +22,7 @@ const GROUPS: Record<string, string[]> = {
     "ai-pet-wangcai", "jingchen-ai", "wangshu-memoir", "travel-planner-agent",
     "guantu-show-butler", "school-planner-agent", "memoir-agent-pro",
     "life-comeback-planner", "ai-dream-novel", "remote-job-radar",
-    "ai-competition-radar", "ai-writer", "comic-assistant",
+    "ai-competition-radar", "ai-writer", "comic-assistant", "ligong-engineer-agent",
   ],
   web: [
     "ai-toolbox", "free-api-playground", "one-person-company", "hermes-portable",
@@ -116,8 +116,8 @@ const AI_TOOLS = [
 
 const METHOD_ASSETS = [
   { icon: BookOpen, name: "由简入深 L1–L16", desc: "16 个 AI 学习站，从入门到 Agent 部署", href: "/learn/" },
-  { icon: BookOpen, name: "网文写作智库", desc: "22 篇原创 + AI 味检测器 + 50 个开源项目导航", href: "https://www.zbjh.top" },
-  { icon: BookOpen, name: "星鉴 · 项目验真", desc: "GitHub 高星项目四维重打分与硬伤清单", href: "https://xingjian.zbjh.top" },
+  { icon: BookOpen, name: "网文写作智库", desc: "22 篇原创 + AI 味检测器 + 50 个开源项目导航", href: "/writer/" },
+  { icon: BookOpen, name: "星鉴 · 项目验真", desc: "GitHub 高星项目四维重打分与硬伤清单", href: "/works/xingjian/" },
   { icon: Clapperboard, name: "漫剧工具导航", desc: "112 个 AI 漫剧工具按生产环节聚合", href: "https://zhimanyingfang.cn" },
 ];
 

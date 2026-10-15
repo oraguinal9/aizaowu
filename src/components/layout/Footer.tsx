@@ -22,6 +22,8 @@ export default function Footer() {
               <Link href="/#flagship" className="transition-colors hover:text-brand">代表案例</Link>
               <Link href="/#gallery" className="transition-colors hover:text-brand">全部作品</Link>
               <Link href="/learn/" className="transition-colors hover:text-brand">AI 学习阶梯</Link>
+              <Link href="/works/" className="transition-colors hover:text-brand">内容作品集</Link>
+              <Link href="/writer/" className="transition-colors hover:text-brand">网文写作智库</Link>
               <Link href="/tools" className="transition-colors hover:text-brand">免费 AI 工具</Link>
               <Link href="/about" className="transition-colors hover:text-brand">关于</Link>
             </div>
@@ -30,7 +32,6 @@ export default function Footer() {
             <h4 className="mb-2 font-display font-semibold text-foreground">外面</h4>
             <div className="flex flex-col gap-1.5 text-muted">
               <a href="https://github.com/oraguinal9" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-brand">GitHub</a>
-              <a href="https://www.zbjh.top" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-brand">网文写作智库</a>
               <a href="https://xingjian.zbjh.top" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-brand">星鉴 · 项目验真</a>
             </div>
           </div>
