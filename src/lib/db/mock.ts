@@ -137,7 +137,7 @@ export const MOCK_PROJECTS: Project[] = [
 
   // ============ 教育学习 ============
   {
-    id: "seed-11", slug: "math-club", name: "数学具乐部", tagline: "苏教版口算闯关，1-6 年级 32 章全覆盖",
+    id: "seed-11", slug: "math-club", name: "数学俱乐部", tagline: "苏教版口算闯关，1-6 年级 32 章全覆盖",
     description: "游戏化数学练习站——苏教版 1-6 年级 32 章、280+ 道题全收录。以口算闯关的形式刷题，答对推进、答错重来，附带星级评价。\n\nAI 辅助出题 + 人工审核，题目与教材章节对齐，孩子自己就能刷。",
     url: "https://math.zbjh.top", category_id: "cat-4", tags: ["数学", "口算", "苏教版", "闯关", "小学"],
     screenshots: ["/covers/math-club.jpg"], thumbnail_url: "/covers/math-club.jpg", status: "published", vote_count: 10, comment_count: 3,
@@ -146,7 +146,7 @@ export const MOCK_PROJECTS: Project[] = [
     category: MOCK_CATEGORIES[3],
   },
   {
-    id: "seed-12", slug: "english-club", name: "英语具乐部", tagline: "江苏译林版句子 & 单词闯关，总入口",
+    id: "seed-12", slug: "english-club", name: "英语俱乐部", tagline: "江苏译林版句子 & 单词闯关，总入口",
     description: "配套江苏译林版英语教材的闯关练习站，分为句子闯关与单词闯关两大板块，按单元组织，可反复练习。\n\n纯静态站，打开即用，手机电脑都适配。",
     url: "https://englishclub.zbjh.top", category_id: "cat-4", tags: ["英语", "译林版", "单词", "句子", "闯关"],
     screenshots: ["/covers/english-club.jpg"], thumbnail_url: "/covers/english-club.jpg", status: "published", vote_count: 4, comment_count: 1,
@@ -155,7 +155,7 @@ export const MOCK_PROJECTS: Project[] = [
     category: MOCK_CATEGORIES[3],
   },
   {
-    id: "seed-13", slug: "chinese-club", name: "语文具乐部", tagline: "部编版生字词闯关，总入口",
+    id: "seed-13", slug: "chinese-club", name: "语文俱乐部", tagline: "部编版生字词闯关，总入口",
     description: "配套部编版语文教材的生字词闯关站，按年级与单元组织，覆盖读音、字形、词义等题型。\n\n纯静态站，手机电脑通用，适合课后自测。",
     url: "https://yuwen.zbjh.top", category_id: "cat-4", tags: ["语文", "部编版", "生字词", "闯关", "小学"],
     screenshots: ["/covers/chinese-club.jpg"], thumbnail_url: "/covers/chinese-club.jpg", status: "published", vote_count: 3, comment_count: 1,

@@ -1,23 +1,70 @@
-# AI造物 (aizaow.com)
-> AI 项目展示和发现平台。素人开发者用 AI 创造的项目都在这里。
+# aizaow.com（造物集）
 
-## 网站结构
-- 首页: https://aizaow.com (精选/最新/热门项目)
-- 排行榜: https://aizaow.com/rankings (项目排名)
-- 搜索: https://aizaow.com/search (全文搜索)
-- 关于: https://aizaow.com/about
-- 提交: https://aizaow.com/submit
+> 个人 AI 作品展示站：47 个上线作品，覆盖 AI 陪伴、教育学习、内容创作、开发工具、金融工具等方向。本文件供 AI 模型与爬虫直接读取，内容为事实清单。
 
-## 项目分类
-- /categories/productivity 效率工具
-- /categories/creative 创意设计
-- /categories/games 游戏
-- /categories/education 教育
-- /categories/content 内容
-- /categories/lifestyle 生活
-- /categories/devtools 开发者工具
-- /categories/finance 金融
-- /categories/other 其他
+主站入口：https://aizaow.com/ —— 首页即作品墙，每张卡片含截图、简介、外链。
+全部 URL 清单见 https://aizaow.com/sitemap.xml
 
-## API
-- Sitemap: https://aizaow.com/sitemap.xml
+## 上线作品（47）
+
+- [小灵AI女友](https://xiaoling.zbjh.top)：DeepSeek+豆包TTS+阿里云ASR，支持APK
+- [小语 · AI情感树洞](https://yuyan.zbjh.top)：一个随时在线的AI倾听者，陪你说说心里话
+- [预言 · AI占卜师](https://shijie.zbjh.top)：塔罗 / 占卜 / 星座，AI 给出可读的解牌
+- [灵犀解梦](https://lingxi.zbjh.top)：Next.js 16 + DeepSeek + Supabase，AI梦境/塔罗/星座
+- [星语星愿](https://star.zbjh.top)：把你的心愿写进许愿瓶，放进星空等有缘人
+- [AI宠物旺财](https://pet.zbjh.top)：VRM狗狗+DeepSeek+Edge-TTS男声，AI虚拟宠物陪伴
+- [景琛AI男友](https://jingchen.zbjh.top)：Live2D金发酷哥+Edge-TTS男声，AI虚拟男友
+- [往事书 · 回忆录智能体](https://wangshi.zbjh.top)：让长辈用说话的方式，留下一本自己的回忆录
+- [旅行规划 Agent](https://travel.zbjh.top)：说一句话，AI 帮你排好带地图和预算的旅行行程
+- [观途 · 单剧全程管家](https://concert.zbjh.top)：一场演出从官宣到开票到交通晚餐，全流程帮你盯
+- [数学俱乐部](https://math.zbjh.top)：苏教版口算闯关，1-6 年级 32 章全覆盖
+- [英语俱乐部](https://englishclub.zbjh.top)：江苏译林版句子 & 单词闯关，总入口
+- [语文俱乐部](https://yuwen.zbjh.top)：部编版生字词闯关，总入口
+- [喵喵英语岛](https://english.zbjh.top)：游戏化英语启蒙，猫咪视角边玩边学
+- [小学学习乐园](https://study.zbjh.top)：把小学各科练习聚在一处的轻量入口
+- [升学规划智能体](https://bkzy.zbjh.top)：输入成绩与意向，生成可执行的升学路径
+- [仙侠知识库](https://xianxia.zbjh.top)：仙侠世界观设定与术语的双板块检索站
+- [AI互动小说](https://ai.zbjh.top)：你的选择改变一切，16 个世界观可选
+- [漫剧制作知识库](https://manju.zbjh.top)：AI 漫剧从剧本到成片的完整方法论，网页版
+- [回忆录智能体](https://memoir.zbjh.top)：聊天记录导入 + AI 访谈 + 事件整理 + 书稿生成
+- [一个人的内容公司](https://opc.zbjh.top)：网文 / 短篇 / AI 漫剧怎么做，以及一人公司政策
+- [执笔惊鸿 · AI写作助手](https://zbjh.top)：Next.js全栈AI写作工具，DeepSeek驱动
+- [人生逆袭规划师](https://planner.zbjh.top)：填问卷，AI 为你定制分阶段可落地的逆袭人生规划
+- [AI 赛事雷达](https://aisai.zbjh.top)：AI 创作 / 漫剧 / 智能体 / 文学征文，比赛每日更新
+- [AI 实用工具箱](https://estate.zbjh.top)：二手房税费、合同体检、房源对比、贷款维权一次算清
+- [远程工作雷达](https://work.zbjh.top)：全球远程职位聚合，标清中国可投与时区要求
+- [Hermes便携AI包](https://pan.baidu.com/s/17CVrMVqVmAzJR1lIwFxP6w)：Ollama+秋叶GUI便携整合，全离线运行，免安装即开即用
+- [AI 免费 API 试用台](https://freeapi.zbjh.top)：不用注册、不用配 key，直接在网页里试各家模型
+- [AI漫剧助手 · 知漫影方](https://zhimanyingfang.cn)：Next.js全栈，AI辅助漫画和短剧创作工具
+- [AI 入门 · 由简入深 L1](https://ai101.zbjh.top)：7 天从零开始会用 AI，零基础第一站
+- [AI 大模型原理 · 由简入深 L2](https://llm.zbjh.top)：14 天中文学习路线图，看懂大模型怎么来的
+- [深度学习基础 · 由简入深 L3](https://dl.zbjh.top)：10 天搞懂神经网络怎么学习
+- [RAG 与 Agent · 由简入深 L4](https://rag.zbjh.top)：10 天让大模型有知识、会做事
+- [微调与部署 · 由简入深 L5](https://finetune.zbjh.top)：10 天让大模型变成你的专属员工
+- [RLHF 人类反馈强化学习 · 由简入深 L6](https://rlhf.zbjh.top)：让大模型「说得对、不胡来」
+- [AI 学习站 L7 · AIGC 创作](https://aigc.zbjh.top)：文生图与文生视频，从提示词到出片
+- [MCP 模型上下文协议 · 由简入深 L8](https://mcp.zbjh.top)：让模型接上外部工具的标准插头
+- [AI Agent 实战 L9 · 由简入深](https://agent.zbjh.top)：把智能体真正部署起来跑业务
+- [本地部署大模型 L10 · 由简入深](https://local.zbjh.top)：在自己电脑上跑大模型，数据不出门
+- [提示词工程 L11 · 由简入深](https://prompt.zbjh.top)：把话说到点子上，模型才会给对答案
+- [多模态与 ComfyUI L12 · 由简入深](https://comfy.zbjh.top)：本地跑图像与视频生成，工作流自己搭
+- [企业级 RAG 知识库 L13 · 由简入深](https://ragpro.zbjh.top)：从能答到答得准，做到企业可用
+- [微调实战进阶 L14 · 由简入深](https://ftplus.zbjh.top)：数据怎么造、参数怎么调、效果怎么评
+- [AI 应用开发平台 L15 · 由简入深](https://dify.zbjh.top)：不写代码也能把 AI 应用搭出来
+- [推理模型与思维链 L16 · 由简入深](https://reason.zbjh.top)：让模型先想再答，难题正确率怎么提上去
+- [星鉴 · GitHub 高星项目录](https://xingjian.zbjh.top)：高星不等于好用，这里替你验真
+- [李工 · 工程师智能体](https://aizaow.com/ligong/)：氢能工程师人设的课堂问答与知识库智能体
+
+## 站内栏目
+
+- [作品墙](https://aizaow.com/)：47 个作品的图文画廊，按 9 个分类组织
+- [/works/ 内容作品集](https://aizaow.com/works/)：12 个内容型子站门户（学习、语文、数学、英语、赛事雷达等）
+- [/writer/ 网文写作智库](https://aizaow.com/writer/)：面向网文作者的写作智库，6 栏目 22 篇文章 + 开源工具导航 + 浏览器端 AI 味检测器
+- [/learn/ 学习站群](https://aizaow.com/learn/)：L1-L16 AI 学习路径，从 AI 入门到 RAG、微调、RLHF、MCP、Agent 实战
+- [/ligong/ 李工工程师智能体](https://aizaow.com/ligong/)：面向工业设备工程师的问答智能体
+
+## 关于
+
+- 站长：oraguinal9（GitHub），联系 QQ 503956280
+- 备案：苏ICP备2026033843号-3
+- 本文件更新日期：2026-10-17
