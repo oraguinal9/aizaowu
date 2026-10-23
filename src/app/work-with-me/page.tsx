@@ -8,7 +8,7 @@ import { APP_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "聊聊 · 我怎么做东西",
-  description: "一个个人作品展示站：智能体、网站与平台、AI 视频三条线，47 个作品全部在线可点开。想聊技术、聊项目，加 QQ 就好。",
+  description: "一个人做站、做智能体、做 AI 视频，47 个作品全部在线可点开。支持项目定制与合作开发，加 QQ 详谈。",
   alternates: { canonical: `${APP_URL}/work-with-me` },
 };
 
@@ -58,7 +58,7 @@ export default function WorkWithMePage() {
           <span className="text-gradient">一堆自己做出来的东西</span>
         </h1>
         <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted">
-          这里不是产品页，是我的作品柜。47 个作品全部在线、现场可点开 —— 想聊技术、聊项目，或者只是好奇某个东西怎么做的，都欢迎。
+          这里是作品柜，也是合作入口。47 个作品全部在线、现场可点开 —— 有想做的项目，或者想了解某个东西怎么做出来的，都欢迎聊。
         </p>
       </section>
 
@@ -109,9 +109,9 @@ export default function WorkWithMePage() {
         <section className="mt-16 overflow-hidden rounded-2xl border border-border bg-surface">
           <div className="p-8 sm:p-10">
             <div className="max-w-xl">
-              <h2 className="font-display text-2xl font-bold text-foreground">想聊就加我</h2>
+              <h2 className="font-display text-2xl font-bold text-foreground">项目合作 · 加我详谈</h2>
               <p className="mt-3 max-w-md text-sm leading-relaxed text-muted">
-                QQ 加我就行，聊技术、聊项目、或者只是问问某个东西怎么做的都欢迎，不用客套。
+                承接网站 / 平台搭建、AI 智能体定制、AI 视频与漫剧制作 —— 页面上的 47 个作品就是能力清单。有需求加 QQ 说明来意，通常当天回复。
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-3">
                 <QqCopy />

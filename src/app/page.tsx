@@ -356,7 +356,7 @@ export default async function HomePage() {
                 想聊点什么？
               </h2>
               <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-muted">
-                这里是我自己一个个做出来又上线的东西。如果你也在折腾类似的事，或者好奇哪个项目是怎么做的 —— 加 QQ 聊聊，不谈生意也行。
+                这里是我自己一个个做出来又上线的东西。有想做的项目、想定制类似的东西，或者好奇某个作品是怎么做的 —— 加 QQ 聊聊。
               </p>
               <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
                 <Link
