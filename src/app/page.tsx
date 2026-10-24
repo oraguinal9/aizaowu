@@ -27,7 +27,7 @@ const GROUPS: Record<string, string[]> = {
   web: [
     "ai-toolbox", "free-api-playground", "one-person-company", "hermes-portable",
     "xingjian-github-hall", "math-club", "english-club", "chinese-club",
-    "meow-english-island", "primary-study-park", "travel-blindbox", "kids-blindbox", "story-blindbox", "breakfast-blindbox", "eat-blindbox",
+    "meow-english-island", "primary-study-park", "travel-blindbox", "kids-blindbox", "story-blindbox", "breakfast-blindbox", "watch-blindbox", "eat-blindbox",
   ],
   studio: ["comic-kb", "comic-assistant", "xianxia-kb"],
   edu: [

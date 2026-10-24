@@ -573,4 +573,19 @@ export const MOCK_PROJECTS: Project[] = [
     published_at: "2026-10-24T12:00:00Z", updated_at: "2026-10-24T12:00:00Z",
     category: MOCK_CATEGORIES[5],
   },
+  {
+    id: "seed-54", slug: "watch-blindbox", name: "片荒盲盒 · 今晚看什么", tagline: "打开片单刷一小时最后还是重刷老剧？120 部片藏进转盘，3 秒抽出今晚看什么",
+    description: "「决策困难症系列」影视篇：打开视频网站刷一小时片单，最后还是点开了重刷第八遍的老剧？把决定权交给转盘。120 部人肉精选片单（经典 20 部 + 近年新片 51 部），按心情（哭一场/笑一场/烧脑/下饭解压）、时长（90 分钟内/标准片/周末大片）、和谁看（一个人/两个人/全家）三道过滤。\n\n抽中当场给「为什么值得看」三条 + 观前小抄两条（别倍速、备纸巾、粤语原声这类实战提醒）——抽完直接开片。吃腻的一键拉黑永不再抽（存本机），搜索按钮走豆瓣直达（不写死平台，规避版权库变动）。附盲盒语录彩蛋。\n\n单文件纯前端实现，零后端零 API，打开链接即玩，手机电脑均可流畅体验。",
+    url: "https://aizaow.com/watch/", category_id: "cat-6", tags: ["影视", "盲盒", "决策工具", "纯前端", "本地存储"],
+    screenshots: ["/covers/watch-blindbox.jpg"], thumbnail_url: "/covers/watch-blindbox.jpg", status: "published", vote_count: 0, comment_count: 0,
+    story: {
+      challenge: "「今晚看什么」是下班后的高频决策瘫痪：视频平台的推荐算法只会围着流量打转，片单越刷越选择困难；空转盘抽出来的片名没有「为什么值得看」，抽完还要自己查。",
+      approach: "120 部片全部人肉精选并带完整数据（推荐理由三条/观前小抄两条/心情/时长/观众标签），三道过滤 + 3 秒转盘直接出可开片的答案；搜索按钮走豆瓣直达而不写死平台名，规避版权库变动导致的失效；拉黑记录存浏览器本地。",
+      result: "从打开到抽出「今晚看这部 + 三条理由」不超过 10 秒；自动化断言验证心情×观众 16 组合、心情×时长 12 组合全覆盖无空池；与干饭/陪娃/睡前/早餐/旅行盲盒互挂，决策困难症系列成阵，长期挂在 aizaow.com/watch/。",
+      stack: ["单文件 HTML", "CSS 转盘动画", "120 部片精选数据库", "localStorage 拉黑", "豆瓣搜索直达"],
+    },
+    view_count: 0, submitter_id: null, is_featured: false, created_at: "2026-10-24T14:00:00Z",
+    published_at: "2026-10-24T14:00:00Z", updated_at: "2026-10-24T14:00:00Z",
+    category: MOCK_CATEGORIES[5],
+  },
 ];

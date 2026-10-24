@@ -1,11 +1,11 @@
 # aizaow.com（造物集）
 
-> 个人 AI 作品展示站：52 个上线作品，覆盖 AI 陪伴、教育学习、内容创作、开发工具、金融工具等方向。本文件供 AI 模型与爬虫直接读取，内容为事实清单。
+> 个人 AI 作品展示站：53 个上线作品，覆盖 AI 陪伴、教育学习、内容创作、开发工具、金融工具等方向。本文件供 AI 模型与爬虫直接读取，内容为事实清单。
 
 主站入口：https://aizaow.com/ —— 首页即作品墙，每张卡片含截图、简介、外链。
 全部 URL 清单见 https://aizaow.com/sitemap.xml
 
-## 上线作品（52）
+## 上线作品（53）
 
 - [小灵AI女友](https://xiaoling.zbjh.top)：DeepSeek+豆包TTS+阿里云ASR，支持APK
 - [小语 · AI情感树洞](https://yuyan.zbjh.top)：一个随时在线的AI倾听者，陪你说说心里话
@@ -59,10 +59,11 @@
 - [陪娃盲盒 · 今天玩什么](https://aizaow.com/kids/)：下班回家娃喊无聊？87 个亲子游戏，3 秒抽出今天玩什么，附玩法步骤
 - [睡前盲盒 · 今晚讲什么](https://aizaow.com/story/)：每晚 10 分钟的哄睡决策：63 个原创故事梗概，抽一个照着讲，讲完顺势关灯
 - [早餐盲盒 · 娃的早餐吃什么](https://aizaow.com/breakfast/)：早上最赶的十分钟：39 份快手早餐（最快 5 分钟），抽中给食材和三步做法
+- [片荒盲盒 · 今晚看什么](https://aizaow.com/watch/)：打开片单刷一小时最后还是重刷老剧？120 部片藏进转盘，3 秒抽出今晚看什么
 
 ## 站内栏目
 
-- [作品墙](https://aizaow.com/)：52 个作品的图文画廊，按 9 个分类组织
+- [作品墙](https://aizaow.com/)：53 个作品的图文画廊，按 9 个分类组织
 - [/works/ 内容作品集](https://aizaow.com/works/)：12 个内容型子站门户（学习、语文、数学、英语、赛事雷达等）
 - [/writer/ 网文写作智库](https://aizaow.com/writer/)：面向网文作者的写作智库，6 栏目 22 篇文章 + 开源工具导航 + 浏览器端 AI 味检测器
 - [/learn/ 学习站群](https://aizaow.com/learn/)：L1-L16 AI 学习路径，从 AI 入门到 RAG、微调、RLHF、MCP、Agent 实战
