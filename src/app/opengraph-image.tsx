@@ -124,7 +124,7 @@ export default async function Image() {
           <span style={{ fontSize: 24, color: "#8b9aff", fontWeight: 700 }}>aizaow.com</span>
           <span style={{ fontSize: 24, color: "#71717a" }}>
             {" "}
-            · 48 个上线作品，现场可点开
+            · 49 个上线作品，现场可点开
           </span>
         </div>
       </div>

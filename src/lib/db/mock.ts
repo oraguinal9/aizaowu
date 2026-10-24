@@ -513,4 +513,19 @@ export const MOCK_PROJECTS: Project[] = [
     published_at: "2026-10-24T00:00:00Z", updated_at: "2026-10-24T00:00:00Z",
     category: MOCK_CATEGORIES[5],
   },
+  {
+    id: "seed-50", slug: "eat-blindbox", name: "干饭盲盒 · 今天吃这个", tagline: "点外卖/出去吃的决策瘫痪解药——3 秒抽出今天吃什么，附点单攻略",
+    description: "「旅行盲盒」的姊妹篇，专治打开外卖软件刷半小时最后随便点个吃腻的。50 个国民品类藏进转盘：麻辣烫、黄焖鸡、猪脚饭、烤鱼、新疆炒米粉、煲仔饭……先按场景（点外卖/出去吃）、预算（20 内/20-40/40+）、口味（辣过瘾/清淡养胃/米饭杀手/面粉控/换换口味）三道过滤，转动转盘 3 秒出结果。\n\n抽中当场给点单攻略：三步点法（主打/灵魂/进阶）+ 两条避坑——抽完不用再想怎么点。吃腻的一键拉黑永不再抽（存本机，池子越用越懂你），支持复制搜索词直达外卖 App、高德搜附近、干饭语录彩蛋。\n\n单文件纯前端实现，零后端零 API，打开链接即玩，手机电脑均可流畅体验。",
+    url: "https://aizaow.com/eat/", category_id: "cat-6", tags: ["美食", "盲盒", "决策工具", "纯前端", "本地存储"],
+    screenshots: ["/covers/eat-blindbox.jpg"], thumbnail_url: "/covers/eat-blindbox.jpg", status: "published", vote_count: 0, comment_count: 0,
+    story: {
+      challenge: "「今天吃什么」是一天三次的高频决策瘫痪：市面上的「吃什么转盘」要么只是个空转盘抽菜名，抽完还得自己想怎么点；要么是重内容平台，要注册登录、数据被平台锁死。",
+      approach: "把决策拆成三道过滤（场景×预算×口味）+ 一次 3 秒转盘：50 个品类每个都带点单攻略与避坑数据，抽中即得完整可执行方案；拉黑记录与使用偏好全部存浏览器本地，零账号零后端，单 HTML 文件任何静态服务器都能跑。",
+      result: "从打开到抽中「今天吃这个 + 三步点法」不超过 10 秒；与「旅行盲盒」互挂链接组成决策困难症系列（一年抽一次去哪玩，一天抽三次吃什么），长期挂在 aizaow.com/eat/。",
+      stack: ["单文件 HTML", "CSS 转盘动画", "50 品类攻略数据库", "localStorage 拉黑", "高德地图"],
+    },
+    view_count: 0, submitter_id: null, is_featured: false, created_at: "2026-10-24T08:00:00Z",
+    published_at: "2026-10-24T08:00:00Z", updated_at: "2026-10-24T08:00:00Z",
+    category: MOCK_CATEGORIES[5],
+  },
 ];
