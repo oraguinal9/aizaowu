@@ -8,7 +8,7 @@ import { APP_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "聊聊 · 我怎么做东西",
-  description: "一个人做站、做智能体、做 AI 视频，47 个作品全部在线可点开。支持项目定制与合作开发，加 QQ 详谈。",
+  description: "一个人做站、做智能体、做 AI 视频，48 个作品全部在线可点开。支持项目定制与合作开发，加 QQ 详谈。",
   alternates: { canonical: `${APP_URL}/work-with-me` },
 };
 
@@ -58,7 +58,7 @@ export default function WorkWithMePage() {
           <span className="text-gradient">一堆自己做出来的东西</span>
         </h1>
         <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted">
-          这里是作品柜，也是合作入口。47 个作品全部在线、现场可点开 —— 有想做的项目，或者想了解某个东西怎么做出来的，都欢迎聊。
+          这里是作品柜，也是合作入口。48 个作品全部在线、现场可点开 —— 有想做的项目，或者想了解某个东西怎么做出来的，都欢迎聊。
         </p>
       </section>
 
@@ -111,7 +111,7 @@ export default function WorkWithMePage() {
             <div className="max-w-xl">
               <h2 className="font-display text-2xl font-bold text-foreground">项目合作 · 加我详谈</h2>
               <p className="mt-3 max-w-md text-sm leading-relaxed text-muted">
-                承接网站 / 平台搭建、AI 智能体定制、AI 视频与漫剧制作 —— 页面上的 47 个作品就是能力清单。有需求加 QQ 说明来意，通常当天回复。
+                承接网站 / 平台搭建、AI 智能体定制、AI 视频与漫剧制作 —— 页面上的 48 个作品就是能力清单。有需求加 QQ 说明来意，通常当天回复。
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-3">
                 <QqCopy />

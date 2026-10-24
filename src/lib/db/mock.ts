@@ -498,4 +498,19 @@ export const MOCK_PROJECTS: Project[] = [
     published_at: "2026-10-15T12:00:00Z", updated_at: "2026-10-15T12:00:00Z",
     category: MOCK_CATEGORIES[6],
   },
+  {
+    id: "seed-49", slug: "travel-blindbox", name: "旅行盲盒 · 说走就走", tagline: "转一下，3 秒抽出下一站，当场生成三日行程卡",
+    description: "给「想出去但不想做攻略」的人的选择困难解药——先按预算档（穷游/舒适/轻奢）和口味（自然/古城/美食/海岛/都市）过滤，转动命运转盘 3 秒抽出目的地，页面当场生成完整三日行程卡。\n\n每日分时段安排、单人预算明细（交通/住宿/餐饮/门票四项拆解）、必吃清单、避坑贴士一次给齐；支持一键复制分享文案、保存行程卡图片、高德地图查看目的地，附 1024 程序员节专属彩蛋。\n\n单文件纯前端实现，零后端零 API，打开链接即玩，手机电脑均可流畅体验。",
+    url: "https://aizaow.com/travel/", category_id: "cat-6", tags: ["旅行", "盲盒", "行程规划", "纯前端", "1024 参赛"],
+    screenshots: ["/covers/travel-blindbox.jpg"], thumbnail_url: "/covers/travel-blindbox.jpg", status: "published", vote_count: 0, comment_count: 0,
+    story: {
+      challenge: "旅行决策的第一道坎不是攻略，是「去哪」——选择困难症在目的地这一步就能卡一周；市面攻略工具又都太重，注册、登录、填一堆偏好才给结果。",
+      approach: "把决策做成一次 3 秒的抽奖：预算与口味双维过滤先缩小候选池，CSS 转盘动画承担仪式感，抽中后由内置目的地数据库当场生成三日行程卡；全程单 HTML 文件，零后端零外部 API，任何静态服务器都能跑。",
+      result: "从打开到抽中目的地拿到完整行程，全程不超过 10 秒；作为 1024 程序员节参赛作品上线，同时并入 aizaow.com/travel/ 主站路径长期可玩。",
+      stack: ["单文件 HTML", "CSS 转盘动画", "目的地数据库", "高德地图"],
+    },
+    view_count: 0, submitter_id: null, is_featured: false, created_at: "2026-10-24T00:00:00Z",
+    published_at: "2026-10-24T00:00:00Z", updated_at: "2026-10-24T00:00:00Z",
+    category: MOCK_CATEGORIES[5],
+  },
 ];
